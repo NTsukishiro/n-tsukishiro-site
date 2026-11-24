@@ -1,0 +1,545 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+
+<title>1. GRYZOŃ | N. Tsukishiro</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #e5e5e5;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+/* PASEK POSTĘPU */
+
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #e5e5e5;
+    z-index: 9999;
+}
+
+/* NAGŁÓWEK ROZDZIAŁU */
+
+.chapter-header {
+    min-height: 100vh;
+    width: 100%;
+    padding: 80px 12%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #000;
+}
+
+.author {
+    color: #555;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.chapter-header h1 {
+    font-size: 48px;
+    font-weight: normal;
+    letter-spacing: 12px;
+    color: #eee;
+    animation: appear 2s ease;
+    margin: 0;
+}
+
+.subtitle {
+    margin-top: 30px;
+    color: #777;
+    font-size: 16px;
+    font-style: italic;
+}
+
+/* TREŚĆ ROZDZIAŁU */
+
+.prologue-page {
+    justify-content: flex-start;
+    padding: 100px 12%;
+    gap: 28px;
+    line-height: 1.9;
+    font-size: 19px;
+    background: #000;
+}
+
+.prologue-page h2 {
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 8px;
+    font-weight: normal;
+    margin: 0 0 30px;
+}
+
+.publication-date {
+    text-align: center;
+    color: #555;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 2px;
+    margin-top: -10px;
+    margin-bottom: 35px;
+}
+
+.prologue-page p {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.story .center {
+    text-align: center;
+}
+
+.story .dialogue {
+    font-style: italic;
+    margin: 0;
+}
+
+.story .scene-break {
+    text-align: center;
+    color: #999;
+    letter-spacing: 5px;
+    margin: 30px 0;
+}
+
+.story .section-end {
+    text-align: center;
+    margin-top: 60px;
+    letter-spacing: 2px;
+}
+
+.story .no-indent {
+    text-indent: 0;
+}
+
+/* ANIMACJE */
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* PRZYCISKI CZYTANIA */
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 45px 15px;
+    font-family: Arial, sans-serif;
+    background: #000;
+}
+
+button {
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #333;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    color: white;
+    border-color: #aaa;
+}
+
+/* NAWIGACJA */
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 25px 12%;
+    border-top: 1px solid #292929;
+    font-family: Arial, sans-serif;
+}
+
+.navigation a {
+    color: #999;
+    text-decoration: none;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.navigation a:hover {
+    color: white;
+}
+
+/* STOPKA */
+
+footer {
+    text-align: center;
+    padding: 40px 15px;
+    color: #444;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 3px;
+}
+
+/* POWRÓT NA GÓRĘ */
+
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #333;
+    background: #080808;
+    color: #aaa;
+    font-size: 20px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+    transition: 0.3s;
+}
+
+#backToTop.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#backToTop:hover {
+    color: white;
+    border-color: #aaa;
+    background: #151515;
+}
+
+/* TELEFONY */
+
+@media (max-width: 600px) {
+    .chapter-header {
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+
+    .chapter-header h1 {
+        font-size: 38px;
+        letter-spacing: 9px;
+    }
+
+    .prologue-page {
+        font-size: 18px;
+        line-height: 1.85;
+        padding: 75px 8%;
+    }
+
+    .navigation {
+        padding-left: 8%;
+        padding-right: 8%;
+        flex-direction: column;
+    }
+
+    .navigation a {
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="reading-progress"></div>
+
+<main>
+
+<!-- TYTUŁ ROZDZIAŁU -->
+
+<section class="chapter-header">
+    <div class="author">N. TSUKISHIRO</div>
+
+    <h1>1. GRYZOŃ</h1>
+
+    <div class="subtitle">
+        Piętnaście lat po wydarzeniach na placu zabaw
+    </div>
+</section>
+
+<!-- TREŚĆ ROZDZIAŁU -->
+
+<section class="book-page prologue-page" id="rozdzial">
+
+    <h2>GRYZOŃ</h2>
+
+    <div class="publication-date">
+        OPUBLIKOWANO: 24.11.2026
+    </div>
+
+    <article class="story">
+
+<p class="center"><strong>KOSZMAR.</strong></p>
+
+<p class="dialogue"><em>- Re...n........Ren...... oszczędź go! To tylko dziecko....!</em></p>
+
+<p><em>W oddali dostrzegłem kobietę o szczupłej sylwetce i długich jasnych włosach.</em></p>
+
+<p><em>Zmierzała w stronę chłopca, wyraźnie kulejąc.</em></p>
+
+<p><em>Nagle w tle zauważyłem drugą postać o nieokreślonej płci. Wydawała mi się znajoma, jakbym kiedyś już ją widział.</em></p>
+
+<p><em>Mgła zasłaniała jej twarz, nie potrafiłem również określić wzrostu tej osoby.</em></p>
+
+<p><em>Za każdym razem, gdy próbowałem zobrazować sobie twarz, ta rozmywała się.</em></p>
+
+<p><em>Na ziemi znajdowało się ciało mężczyzny pochłonięte przez płomienie. Kobieta usiłowała dobiec do dziecka, lecz upadła, skręcając kostkę.</em></p>
+
+<p><em>Moment później podeszła do niej tajemnicza sylwetka, która......</em></p>
+
+<p class="scene-break">* * *</p>
+
+<p class="center"><em>Godzina 8:30 | RZECZYWISTOŚĆ.</em></p>
+
+<p><em>Przez okno do pokoju wpada blade światło z pobliskiej latarni.</em></p>
+
+<p><em>Z dołu słychać stukot talerzy obijających się o siebie.</em></p>
+
+<p><em>Powietrze przesiąknięte jest zapachem łagodnej, kojącej, lekko wędzonej potrawy.</em></p>
+
+<p><em>Nagle z kuchni dobiega donośny głos.</em></p>
+
+<p class="dialogue">- Ren! Śniadanie gotowe!</p>
+
+<p class="dialogue">- Już idę. <em>- Odpowiedział Ren.</em></p>
+
+<p><em>Chłopak podnosi się z łóżka i patrzy na zegar który wskazuje godzinę, o której przywyknął wstawać każdego ranka od czasu zakończenia liceum.</em></p>
+
+<p><em>Od ponad dwóch lat miewa ten sam sen, powtarzający się koszmar, którego zakończenia nigdy nie potrafił sobie przypomnieć.</em></p>
+
+<p><em>Tajemnicza postać, która zbliża się do kobiety intrygowała Rena, nigdy nie udawało mu się ujrzeć twarzy ani dostrzec żadnych znaków szczególnych, które pozwoliłyby ją rozpoznać, jednak nie był zbyt skłonny, aby głębiej się nad tym pochylać.</em></p>
+
+<p class="center"><em>Przecież to tylko sen, prawda?</em></p>
+
+<p class="dialogue">- Hej Masato, co dziś na śniadanie?</p>
+
+<p class="dialogue">- Ryż z zupą mizo shiru, już dawniej marzyłem aby trafił się tak spokojny dzień na pożywne śniadanie, zero stresu, obowiązków, w końcu czas to pieniądz prawda?</p>
+
+<p class="dialogue">- Masato, a czy wiesz może co się stało z moim stołem?</p>
+
+<p class="dialogue">- Stół? Wyniosłeś go parę dni temu na śmieci, nie pamiętasz?</p>
+
+<p class="dialogue">- Masz rację. - <em>Kiwnął chłopak pomimo, że nie pamięta co wtedy robił</em> .- A tak w ogóle, to już dawno nie dali ci dnia wolnego od czasu.....no wiesz, tych morderstw. Wiecie już cokolwiek na ten temat? - <em>chłopak nie chciał zadręczać się myślą, ze nic nie pamieta</em>.</p>
+
+<p class="dialogue">- Ren, apropo tego, muszę ci coś powiedzieć.</p>
+
+<p class="dialogue">- Coś się stało?</p>
+
+<p class="dialogue">- Przyszło wezwanie na komisariat dotyczące ostatniego mordestwa w górach, dalej nie wiem dlaczego, jednak jesteś wezwany na przesłuchanie.Doszły słuchy od okolicznych myśliwych że widziano cię pięć dni temu między dwudziestą trzydzieści a dwudziestą pięćdziesiąt na szlagu górskim w okolicy, gdzie później znalezione zostały zwłoki.</p>
+
+<p class="dialogue">- Pięć dni temu?</p>
+
+<p><em>Ren chorował przez cały tydzień, przez co w ogóle nie wychodził z domu. Na zewnątrz panuje zima, ogromne płatki śniegu spadają z nieba przykrywając szczyty gór, drzewa okryte są ciężkim kocem śniegu. Nikt nie zagłębiał by się w góry w taką pogodę bez żadnego powodu, jeden zły ruch a przykryłaby go lawina śniegu.</em></p>
+
+<p class="dialogue">- Przecież wiesz że wtedy byłem przeziębiony, co miałbym robić w górach? - <em>Chłopak nie do końca pamiętał co robił tego dnia dlatego tym bardziej wydało mu się to dziwne.</em></p>
+
+<p class="dialogue">- Masato...?</p>
+
+<p class="dialogue">- Tak? Odpowiedział zdziwiony.</p>
+
+<p class="dialogue">- Naprawdę myślisz że ja to zrobiłem?</p>
+
+<p class="dialogue">- Ren.. wiesz dobrze że nie mam podstaw do tego aby twierdzić co naprawdę się wydarzyło a co nie. Nie mogę jednak potwierdzić niczyjej wersji ponieważ cały ten czas byłem w pracy. Po prostu pójdź na to przesłuchanie, wyjaśnij co się wydarzyło i gdzie wtedy byłeś a wszystko będzie dobrze.</p>
+
+<p class="dialogue">- Jasne....wyjaśnij. Rzecz w tym że sam nie wiem gdzie byłem.- <em>Szepnął pod nosem.</em></p>
+
+<p class="dialogue">- Coś mówiłeś?</p>
+
+<p class="dialogue">- Nie, nic.</p>
+
+<p><em>Zdesperowany chłopak, próbując przypomnieć sobie wydarzenia z tego dnia idzie doradzić się u swojego najlepszego przyjaciela, Hinako.</em></p>
+
+<p><em>Ren z Hinako znali się od czasów szkoły podstawowej. Niejeden raz przyjaciel wstawił się za chłopakiem, czy to w konfliktach rówieśniczych, czy w sprawach szkolnych.</em></p>
+
+<p><em>Ren bardzo ufa swojemu przyjacielowi. Nie miał zresztą powodów, by było inaczej.</em></p>
+
+<p><em>Dzielili się każdą informacją, od zwykłych plotek, po sprawy rodzinne.</em></p>
+
+<p><em>Postanawia zapytać przyjaciela czy spędzali może wspólnie czas tego dnia.</em></p>
+
+<p><em>W czasie szkoły podstawowej byli nierozłączni, każde południe, każdą lekcję siedzieli obok siebie, dzielili się jedzeniem oraz napojami.</em></p>
+
+<p><em>Ren jest przekonany, że Hinako go wysłucha.</em></p>
+
+<p><em>Nic nie byłoby w tym dziwnego skoro ufali sobie bezgranicznie. Chłopak w końcu dotarł pod dom przyjaciela, nikogo nie zastał, pukał do drzwi, jednak nie było żadnego odzewu, jakby nikt nie mieszkał w tym domu, *przecież w chatce powinna być przynajmniej jego mama*, pomyślał Ren.</em></p>
+
+<p><em>Chłopaka przeszedł dreszcz. Miał wrażenie, że dopiero spotkanie z przyjacielem pozwoli mu odzyskać poczucie bezpieczeństwa. Nie potrafił określić, co właściwie czuje. Zastanawiał się nad tym, jak mógłby wytłumaczyć swoją lukę w pamięci w dniu, w którym doszło do makabrycznego morderstwa.</em></p>
+
+<p><em>Zmierzał już do opuszczenia posiadłości, kiedy nagle usłyszał grzechot, jakby coś małego uderzyło o drewno, z którego była chatka. Wzdrygnął się, lecz postanowił sprawdzić tajemniczy odgłos, który nie dawał mu spokoju. Drewniana chatka przypominała małą świątynię z charakterystycznym dla tej części osad dachem z zakręconymi rogami, przy altanie stało drewniane krzesło, na którym mama Hinako zwykle przesiadywała, szyjąc na drutach i słuchając porannego śpiewu ptaków. Nie była zbyt otwarta na obcych.</em></p>
+
+<p><em>Zwykle gdy Ren próbował z nią rozmawiać, ta udawała, że go nie słyszy. Chłopak przywykł do takiego traktowania, nauczył się tego w dzieciństwie, kiedy każdy wypominał mu jego przeszłość, której sam do końca nie rozumiał. Był sierotą. Hinako natomiast doskonale rozumiał sytuację chłopaka gdyż sam stracił ojca w młodym wieku, a od mamy nigdy nie mógł liczyć na ciepło.</em></p>
+
+<p><em>To ich połączyło. To dlatego nie potrafił opuścić tego miejsca. Przecież Hinako nie mógłby zniknąć bez żadnej przyczyny, czyż nie?</em></p>
+
+<p><em>Ren zauważa rozbite okno, przez które zdążył już wpaść śnieg. Widok śniegu wewnątrz domu utwierdzał go w przekonaniu, że musiało stać się coś złego. Dom wyglądał na zaniedbany.</em></p>
+
+<p><em>Postanowił wspiąć się za pomocą drabiny, leżącej przy altanie. Podczas wchodzenia uslyszał głośny dźwięk *coś spadło?* - Szepnął pod nosem.</em></p>
+
+<p><em>Przechodząc przez okno, skaleczył się w nadgarstek szkłem, które musiało zbić się podczas przeciągu panującym w domu.</em></p>
+
+<p><em>Ren postanawia się rozejrzeć, poszukując jakiejś oznaki tego, gdzie może podziewać się Hinako i jego mama. Zaczął od pokoju jego mamy w którym się znajdował, zatrzymał się w pół kroku. Przez chwilę wpatrywał się w ciemnoczerwoną plamę, próbując zrozumieć, na co właściwie patrzy. Nie chciał dopuścić do siebie myśli, która jako pierwsza pojawiła się w jego głowie. To była krew.</em></p>
+
+<p><em>Na podłodze leżały plamy zaschniętej krwi. - *co tu się wydarzyło....* - Zapytał, nie dowierzając w to, co widzi.</em></p>
+
+<p><em>Ren był przekonany, że ostatni raz widział się z Hinako od czterech dni. Nie potrafił jednak stwierdzić, czy piątego dnia mieli ze sobą kontakt. Natomiast twierdząc po stanie, w którym zastał budynek i po zaschniętej już krwi, musiał być opuszczony około od tygodnia.</em></p>
+
+<p><em>Plama przypominała kształtem małą kałużę, w której niegdyś razem z Hinako skakali po powrocie ze szkoły. Drzwi były otwarte. Wie, że nie dowie się niczego więcej dopóki nie sprawdzi reszty domu.</em></p>
+
+<p><em>Idąc korytarzem napotkał się na dziury w ścianach przypominające nory. - *Coś musiało się tu zalęgnąć przez ten czas....* - Szepnął.</em></p>
+
+<p><em>Na ziemi zauważył kawałki desek które wyjaśniałyby dźwięk który usłyszał wchodząc do środka.</em></p>
+
+<p><em>Były to deski z sufitu, na krańcach miały ślady po małych ugryzieniach.</em></p>
+
+<p><em>W końcu dotarł do salonu, w którym panowała przerażająca cisza. Rena przeszedł chłód. Wiedział, że zwiastuje to coś niedobrego.</em></p>
+
+<p><em>Salon był wielkości małego garażu na samochód, jeden telewizor, kanapa, dywan, stół.</em></p>
+
+<p><em>Wszystko wydawało się takie normalne, a zarazem przerażające. Stan pomieszczenia przypominał opis budynków niczym z apokalipsy. Deski odpadały od ścian, kanapa była rozszarpana a telewizor rozstrzaskany. Uwagę Rena przykuł stół, który na pierwszy rzut oka, wydawał się podobny do tego, który rzekomo parę dni temu wyrzucił na śmieci.</em></p>
+
+<p><em>Miał rację, to był ten sam stół.</em></p>
+
+<p><em>Jednak bardziej zwrócił uwagę na kartkę która znajdowała się na stole. Na kartce leżała cegła, która służyła do obciążenia kartki, by nie została zdmuchnięta przez powiew wiatru, jakby czekała specjalnie na niego.</em></p>
+
+<p><em>Był to list, z którego Ren nie potrafił się rozczytać. Nie dość że był on poplamiony krwią, to jeszcze środek kartki oraz boki zostały pogryzione przez szczury.</em></p>
+
+<p class="dialogue">- <em>Wredny gryzoń...</em> - Powiedział zawiedziony.</p>
+
+<p class="section-end"><strong>ROZDZIAŁ: 1 &nbsp; KONIEC.</strong></p>
+
+    </article>
+
+</section>
+
+</main>
+
+<!-- PRZYCISKI CZYTANIA -->
+
+<div class="controls">
+
+    <button onclick="changeFont(-1)">A−</button>
+
+    <button onclick="changeFont(1)">A+</button>
+
+    <button onclick="changeSpacing(-0.1)">Odstępy −</button>
+
+    <button onclick="changeSpacing(0.1)">Odstępy +</button>
+
+</div>
+
+<nav class="navigation">
+
+    <a href="Prolog.html">← POWRÓT DO PROLOGU</a>
+
+    <a href="szczur.html">SPIS TREŚCI</a>
+
+    <a href="#" aria-disabled="true" onclick="return false;">
+        NASTĘPNY ROZDZIAŁ →
+    </a>
+
+</nav>
+
+<footer>
+    N. TSUKISHIRO · SZCZUR
+</footer>
+
+<button id="backToTop" aria-label="Wróć na górę">↑</button>
+
+<script>
+
+/* ZMIANA WIELKOŚCI TEKSTU */
+
+let fontSize = 19;
+let lineHeight = 1.9;
+
+const chapter = document.querySelector(".prologue-page");
+
+function changeFont(value) {
+
+    fontSize += value;
+
+    if (fontSize < 14) fontSize = 14;
+    if (fontSize > 28) fontSize = 28;
+
+    chapter.style.fontSize = fontSize + "px";
+
+}
+
+function changeSpacing(value) {
+
+    lineHeight += value;
+
+    if (lineHeight < 1.4) lineHeight = 1.4;
+    if (lineHeight > 2.5) lineHeight = 2.5;
+
+    chapter.style.lineHeight = lineHeight;
+
+}
+
+/* PASEK POSTĘPU */
+
+const progressBar = document.getElementById("reading-progress");
+
+/* POWRÓT NA GÓRĘ */
+
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+
+    const scrollable =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+    const progress = scrollable > 0
+        ? (window.scrollY / scrollable) * 100
+        : 0;
+
+    progressBar.style.width = progress + "%";
+
+    if (window.scrollY > 400) {
+        backToTop.classList.add("visible");
+    } else {
+        backToTop.classList.remove("visible");
+    }
+
+});
+
+backToTop.addEventListener("click", () => {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+</script>
+
+</body>
+</html>
