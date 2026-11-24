@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Szczur | Rozdział I - N. Tsukishiro</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #e5e5e5;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.reader {
+    max-width: 760px;
+    margin: auto;
+    padding: 30px 24px 80px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #292929;
+    padding-bottom: 20px;
+    font-family: Arial, sans-serif;
+}
+
+header a {
+    color: #999;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+header a:hover,
+.navigation a:hover {
+    color: white;
+}
+
+.author {
+    color: #888;
+    letter-spacing: 3px;
+    font-size: 11px;
+}
+
+.chapter-heading {
+    text-align: center;
+    margin: 105px 0 70px;
+    animation: appear 1.2s ease;
+}
+
+.book-title {
+    color: #777;
+    letter-spacing: 6px;
+    font: 11px Arial, sans-serif;
+}
+
+h1 {
+    font-size: 39px;
+    font-weight: normal;
+    margin: 25px 0 15px;
+}
+
+.chapter-number {
+    color: #666;
+    font: 11px Arial, sans-serif;
+    letter-spacing: 3px;
+}
+
+.chapter-content {
+    font-size: 19px;
+    line-height: 1.9;
+    white-space: pre-line;
+    animation: appear 1.8s ease;
+}
+
+.chapter-content p {
+    margin-bottom: 28px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 55px 0;
+    font-family: Arial, sans-serif;
+}
+
+button {
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #333;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    color: white;
+    border-color: #aaa;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #292929;
+    padding-top: 25px;
+    font-family: Arial, sans-serif;
+}
+
+.navigation a {
+    color: #999;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 100px;
+    color: #444;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 3px;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media(max-width: 600px) {
+    .chapter-heading {
+        margin: 75px 0 50px;
+    }
+
+    h1 {
+        font-size: 31px;
+    }
+
+    .chapter-content {
+        font-size: 18px;
+        line-height: 1.85;
+    }
+}
+.publication-date {
+    color: #555;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 2px;
+    margin-top: 18px;
+}
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #e5e5e5;
+    z-index: 9999;
+    transition: width 0.1s linear;
+}
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #333;
+    background: #080808;
+    color: #aaa;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+    z-index: 999;
+}
+
+#backToTop.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#backToTop:hover {
+    color: white;
+    border-color: #aaa;
+    background: #151515;
+}
+
+.book-page {
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 100px 12%;
+    background: #000;
+    color: #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.title-page {
+    align-items: center;
+    justify-content: center;
+}
+
+.title-page h1 {
+    font-size: 48px;
+    letter-spacing: 12px;
+    font-weight: normal;
+}
+
+.second-page {
+    text-align: center;
+    gap: 35px;
+    line-height: 2;
+    font-size: 17px;
+}
+
+.second-page h2 {
+    margin-top: 70px;
+    font-size: 25px;
+    letter-spacing: 5px;
+}
+
+.prologue-page {
+    gap: 28px;
+    line-height: 2;
+    font-size: 17px;
+}
+
+.prologue-page h2 {
+    text-align: center;
+    letter-spacing: 8px;
+    font-size: 28px;
+    margin-bottom: 40px;
+}
+
+.scene-description {
+    font-style: italic;
+    color: #999;
+    text-align: center;
+}
+
+.dialogue {
+    font-style: italic;
+}
+</style>
+</head>
+
+<body>
+
+<main class="reader">
+
+<header>
+    <a href="szczur.html">← POWRÓT DO KSIĄŻKI</a>
+    <span class="author">N. TSUKISHIRO</span>
+</header>
+
+
+<section class="chapter-heading">
+    <div class="book-title">SZCZUR</div>
+    <h1>Prolog</h1>
+    <div class="chapter-number">00 / PROLOG</div>
+    <div class="publication-date">OPUBLIKOWANO: 24.11.2026</div>
+</section>
+
+<article class="chapter-content" id="chapterText">
+<div class="book-page title-page">
+    <h1>SZCZUR</h1>
+</div>
+
+<div class="book-page second-page">
+    <p>Szczury to wysoce inteligentne gryzonie,</p>
+
+    <p>świetnie przystosowują się do różnych środowisk.</p>
+
+    <p>Dostają się przez niewielkie szczeliny w domach, mieszkaniach, piwnicach.</p>
+
+    <p>Mogą uszkadzać przewody, drewno i izolacje, oraz przenoszą różne choroby, dlatego są uznawane za uciążliwe szkodniki.</p>
+
+    <p>Zupełnie jak człowiek, który zrobi absolutnie wszystko......</p>
+
+    <h2>...ABY PRZEŻYĆ.</h2>
+</div>
+
+<div class="book-page prologue-page">
+    <h2>PROLOG</h2>
+
+    <p>Najgorsze w utracie kontroli nie jest to, że przestajesz decydować o własnym ciele. Najgorsze jest to że, nie wiesz nic o podejmowanych przez ,,siebie” decyzjach.</p>
+
+    <p class="scene-description">Gunma, prefektura Japonii.</p>
+
+    <p class="scene-description">Kirisawa, niewielka miejscowość położona w u podnóża gór.</p>
+
+    <p class="scene-description">Godzina 12:34.</p>
+
+    <p class="scene-description">*Dźwięki syren*</p>
+
+    <p>Funkcjonariusz policji</p>
+
+    <p class="dialogue">- Prosimy wezwać medyków, dwa niezidentyfikowane ciała, uratowaliśmy dziecko...</p>
+
+    <p class="dialogue">- W jakim wieku?</p>
+
+    <p class="dialogue">- Na oko cztery lata. Ofiary to najprawdopodobniej jego rodzice.</p>
+
+    <p>Widok nie wywarł na nim większego wrażenia, nie był to pierwszy raz kiedy podczas służby spotkał się z podobnym widokiem. Dziecko leżało przywiązane do huśtawki na której zwykło się bawić, natomiast ziemię pokrywał popiół z ciał które paliły się jeszcze przy jego obecności.</p>
+
+    <p class="dialogue">- Będzie dobrze maluchu, zaopiekuje się tobą. Powiedział Policjant.</p>
+
+    <p>Jednak nikogo nie zastanowił fakt, że dotarł na miejsce jako pierwszy.</p>
+
+    <p>Przynajmniej nie wtedy.</p>
+</div>
+<p>
+W tym miejscu możesz umieścić właściwą treść swojej książki.
+Każdy nowy akapit umieszczaj w osobnym znaczniku p.
+</p>
+
+</article>
+
+<div class="controls">
+    <button onclick="changeFont(-1)">A−</button>
+    <button onclick="changeFont(1)">A+</button>
+    <button onclick="changeSpacing(-0.1)">Odstępy −</button>
+    <button onclick="changeSpacing(0.1)">Odstępy +</button>
+</div>
+
+<nav class="navigation">
+    <a href="szczur.html">← SPIS TREŚCI</a>
+    <a href="szczur.html">NASTĘPNY ROZDZIAŁ →</a>
+</nav>
+
+<footer>
+    N. TSUKISHIRO · SZCZUR
+</footer>
+
+</main>
+
+<script>
+let fontSize = 19;
+let lineHeight = 1.9;
+
+const chapter = document.getElementById("chapterText");
+
+function changeFont(value) {
+    fontSize += value;
+
+    if (fontSize < 14) fontSize = 14;
+    if (fontSize > 28) fontSize = 28;
+
+    chapter.style.fontSize = fontSize + "px";
+}
+
+function changeSpacing(value) {
+    lineHeight += value;
+
+    if (lineHeight < 1.4) lineHeight = 1.4;
+    if (lineHeight > 2.5) lineHeight = 2.5;
+
+    chapter.style.lineHeight = lineHeight;
+}
+const progressBar = document.getElementById("reading-progress");
+
+window.addEventListener("scroll", () => {
+    const scrollable =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+    const progress = scrollable > 0
+        ? (window.scrollY / scrollable) * 100
+        : 0;
+
+    progressBar.style.width = progress + "%";
+});
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 400) {
+        backToTop.classList.add("visible");
+    } else {
+        backToTop.classList.remove("visible");
+    }
+});
+
+backToTop.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+<button id="backToTop" aria-label="Wróć na górę">↑</button>
+</body>
+<div id="reading-progress"></div>
+</html>
