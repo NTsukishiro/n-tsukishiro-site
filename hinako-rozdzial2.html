@@ -2,140 +2,389 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zapomniane historie | Hinako</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<title>II. ZAPOMNIANE HISTORIE | N. Tsukishiro</title>
+
+<style>
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    background: #000;
+    color: #e5e5e5;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #e5e5e5;
+    z-index: 9999;
+}
+
+.chapter-header {
+    min-height: 100vh;
+    min-height: 100svh;
+    width: 100%;
+    padding: 80px 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #000;
+    overflow: hidden;
+}
+
+.author {
+    color: #555;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.chapter-header h1 {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(25px, 6vw, 48px);
+    font-weight: normal;
+    letter-spacing: clamp(2px, 1.2vw, 10px);
+    line-height: 1.2;
+    color: #eee;
+    animation: appear 2s ease;
+    margin: 0;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+}
+
+.subtitle {
+    margin-top: 30px;
+    color: #777;
+    font-size: clamp(14px, 2.5vw, 16px);
+    font-style: italic;
+    max-width: 100%;
+    line-height: 1.6;
+}
+
+.prologue-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 100px 12%;
+    gap: 28px;
+    line-height: 1.9;
+    font-size: 19px;
+    background: #000;
+}
+
+.prologue-page h2 {
+    text-align: center;
+    font-size: clamp(20px, 4vw, 30px);
+    letter-spacing: clamp(2px, 1vw, 8px);
+    font-weight: normal;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    margin: 0 0 30px;
+}
+
+.publication-date {
+    text-align: center;
+    color: #555;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 2px;
+    line-height: 1.7;
+    margin-top: -10px;
+    margin-bottom: 35px;
+}
+
+.prologue-page p {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 45px 15px;
+    font-family: Arial, sans-serif;
+    background: #000;
+}
+
+button {
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #333;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    color: white;
+    border-color: #aaa;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 25px 12%;
+    border-top: 1px solid #292929;
+    font-family: Arial, sans-serif;
+}
+
+.navigation a {
+    color: #999;
+    text-decoration: none;
+    font-size: 12px;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.navigation a:hover { color: white; }
+
+footer {
+    text-align: center;
+    padding: 40px 15px;
+    color: #444;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 3px;
+}
+
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #333;
+    background: #080808;
+    color: #aaa;
+    font-size: 20px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+    transition: 0.3s;
+}
+
+#backToTop.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#backToTop:hover {
+    color: white;
+    border-color: #aaa;
+    background: #151515;
+}
+
+@media (max-width: 600px) {
+    .chapter-header { padding: 70px 7%; }
+
+    .chapter-header h1 {
+        font-size: clamp(23px, 8vw, 38px);
+        letter-spacing: clamp(1px, 1.5vw, 6px);
+    }
+
+    .prologue-page {
+        font-size: 18px;
+        line-height: 1.85;
+        padding: 75px 8%;
+    }
+
+    .navigation {
+        padding: 25px 8%;
+        flex-direction: column;
+    }
+
+    .navigation a { text-align: center; }
+
+    #backToTop {
+        right: 16px;
+        bottom: 16px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-  <header class="site-header">
-    <a class="site-logo" href="index.html">N. TSUKISHIRO</a>
+<div id="reading-progress"></div>
 
-    <nav class="site-nav">
-      <a href="index.html">Strona główna</a>
-      <a href="powiesci.html">Powieści</a>
-      <a href="o-autorze.html">O autorze</a>
-      <a href="aktualnosci.html">Aktualności</a>
-      <a href="kontakt.html">Kontakt</a>
-    </nav>
-  </header>
+<main>
 
-  <main>
+<section class="chapter-header">
+    <div class="author">N. TSUKISHIRO</div>
+    <h1>II. ZAPOMNIANE HISTORIE</h1>
+    <div class="subtitle">
+        Prefektura Gunma, dwa lata przed wydarzeniami z „Szczura”.
+    </div>
+</section>
 
-    <section class="book-page-hero">
-      <p class="eyebrow">HINAKO</p>
-      <h1>ZAPOMNIANE HISTORIE</h1>
-      <p class="book-subtitle">Tam, gdzie kończy się pamięć</p>
-      <p class="chapter-number">ROZDZIAŁ II</p>
-    </section>
+<section class="prologue-page" id="rozdzial">
 
-    <section class="section-wrap chapter-list">
+    <h2>ZAPOMNIANE HISTORIE</h2>
 
-      <article class="chapter-content">
+    <div class="publication-date">
+        HINAKO · ROZDZIAŁ II
+    </div>
 
-        <p>Pierwsze podróże Hinako nie miały określonego celu.</p>
+    <article class="story">
 
-        <p>Zazwyczaj wybierał niewielkie miejscowości położone z dala od większych miast. Odwiedzał stare świątynie, kapliczki i miejsca, których historia interesowała go od dłuższego czasu.</p>
+<p><em>Pierwsze podróże Hinako nie miały określonego celu.</em></p>
 
-        <p>Zabierał ze sobą niewielki notes.</p>
+<p><em>Zazwyczaj wybierał niewielkie miejscowości położone z dala od większych miast. Odwiedzał stare świątynie, kapliczki i miejsca, których historia interesowała go od dłuższego czasu.</em></p>
 
-        <p>Zapisywał w nim informacje dotyczące odwiedzanych miejsc, zasłyszane legendy oraz nazwiska ludzi, z którymi rozmawiał. Niektóre notatki były krótkie i zawierały jedynie kilka zdań. Inne zajmowały całe strony.</p>
+<p><em>Zabierał ze sobą niewielki notes.</em></p>
 
-        <p>Szczególnie interesowały go opowieści o miejscach, które zniknęły z map.</p>
+<p><em>Zapisywał w nim informacje dotyczące odwiedzanych miejsc, zasłyszane legendy oraz nazwiska ludzi, z którymi rozmawiał. Niektóre notatki były krótkie i zawierały jedynie kilka zdań. Inne zajmowały całe strony.</em></p>
 
-        <p>Podczas jednej z podróży zatrzymał się w niewielkiej miejscowości położonej w górskiej części prefektury.</p>
+<p><em>Szczególnie interesowały go opowieści o miejscach, które zniknęły z map.</em></p>
 
-        <p>Nie planował spędzić tam dużo czasu. Chciał jedynie odwiedzić starą kapliczkę, o której przeczytał w jednym z lokalnych zapisów. Lokalna legenda, która nosiła ze sobą pogłoski o paranormalnych zjawiskach..</p>
+<p><em>Podczas jednej z podróży zatrzymał się w niewielkiej miejscowości położonej w górskiej części prefektury.</em></p>
 
-        <p>Legenda głosiła:</p>
+<p><em>Nie planował spędzić tam dużo czasu. Chciał jedynie odwiedzić starą kapliczkę, o której przeczytał w jednym z lokalnych zapisów. Lokalna legenda, która nosiła ze sobą pogłoski o paranormalnych zjawiskach..</em></p>
 
-        <p>— Kto wejdzie, wróci, jednak nie jako osoba, którą każdy znał wcześniej.</p>
+<p><em>Legenda głosiła ,,Kto wejdzie, wróci, jednak nie jako osoba, którą każdy znał wcześniej."</em></p>
 
-        <p>Miejsce było zaniedbane. Drewniana konstrukcja nosiła ślady upływu czasu, a znajdujące się wewnątrz przedmioty pokrywała warstwa kurzu.</p>
+<p><em>Miejsce było zaniedbane. Drewniana konstrukcja nosiła ślady upływu czasu, a znajdujące się wewnątrz przedmioty pokrywała warstwa kurzu.</em></p>
 
-        <p>Kapliczka znajdowała się na niewielkim wzniesieniu, z którego można było dostrzec część okolicznych zabudowań. Prowadzące do niej kamienne schody były nierówne, a pomiędzy ich szczelinami wyrastały niewielkie rośliny. W kilku miejscach drewno zaczęło ciemnieć pod wpływem wilgoci. Na dachu zalegały opadłe liście, a znajdujące się obok stare kamienne latarnie nie wyglądały na używane od wielu lat.</p>
+<p><em>Kapliczka znajdowała się na niewielkim wzniesieniu, z którego można było dostrzec część okolicznych zabudowań. Prowadzące do niej kamienne schody były nierówne, a pomiędzy ich szczelinami wyrastały niewielkie rośliny. W kilku miejscach drewno zaczęło ciemnieć pod wpływem wilgoci. Na dachu zalegały opadłe liście, a znajdujące się obok stare kamienne latarnie nie wyglądały na używane od wielu lat.</em></p>
 
-        <p>Wnętrze było niewielkie i słabo oświetlone. Przez wąskie szczeliny pomiędzy deskami przedostawało się światło, które tworzyło na podłodze nieregularne plamy. Hinako zauważył kilka starych zapisów oraz przedmiotów, których przeznaczenia nie potrafił określić. Wszystko sprawiało wrażenie pozostawionego w pośpiechu, choć nie znalazł żadnych śladów wskazujących na to, że wydarzyło się tam coś szczególnego.</p>
+<p><em>Wnętrze było niewielkie i słabo oświetlone. Przez wąskie szczeliny pomiędzy deskami przedostawało się światło, które tworzyło na podłodze nieregularne plamy. Hinako zauważył kilka starych zapisów oraz przedmiotów, których przeznaczenia nie potrafił określić. Wszystko sprawiało wrażenie pozostawionego w pośpiechu, choć nie znalazł żadnych śladów wskazujących na to, że wydarzyło się tam coś szczególnego.</em></p>
 
-        <p>Po zakończeniu oględzin Hinako postanowił zapytać jednego z mieszkańców o historię okolicy.</p>
+<p><em>Po zakończeniu oględzin Hinako postanowił zapytać jednego z mieszkańców o historię okolicy.</em></p>
 
-        <p>Starszy mężczyzna, którego spotkał niedaleko niewielkiego sklepu, początkowo nie wykazywał większego zainteresowania rozmową. Dopiero gdy Hinako wspomniał o dawnych wierzeniach, starzec zaczął opowiadać o miejscach, które pamiętał jeszcze ze swojego dzieciństwa.</p>
+<p><em>Starszy mężczyzna, którego spotkał niedaleko niewielkiego sklepu, początkowo nie wykazywał większego zainteresowania rozmową. Dopiero gdy Hinako wspomniał o dawnych wierzeniach, starzec zaczął opowiadać o miejscach, które pamiętał jeszcze ze swojego dzieciństwa.</em></p>
 
-        <p>Wspominał o opuszczonych domach, starych drogach i osadach, które z czasem zostały pochłonięte przez las.</p>
+<p><em>Wspominał o opuszczonych domach, starych drogach i osadach, które z czasem zostały pochłonięte przez las.</em></p>
 
-        <p>Jedna z historii szczególnie przykuła uwagę Hinako.</p>
+<p><em>Jedna z historii szczególnie przykuła uwagę Hinako.</em></p>
 
-        <p>Mężczyzna opowiedział mu o niewielkiej miejscowości, która miała znajdować się gdzieś głęboko w górach.</p>
+<p><em>Mężczyzna opowiedział mu o niewielkiej miejscowości, która miała znajdować się gdzieś głęboko w górach.</em></p>
 
-        <p>Według niego niegdyś mieszkało tam kilkadziesiąt rodzin. Z czasem jednak osada przestała pojawiać się w lokalnych zapisach.</p>
+<p><em>Według niego niegdyś mieszkało tam kilkadziesiąt rodzin. Z czasem jednak osada przestała pojawiać się w lokalnych zapisach.</em></p>
 
-        <p>Hinako zapytał, co się z nią stało.</p>
+<p><em>Hinako zapytał, co się z nią stało.</em></p>
 
-        <p>Starzec wzruszył ramionami.</p>
+<p><em>Starzec wzruszył ramionami.</em></p>
 
-        <p>Niektórzy twierdzili, że mieszkańcy opuścili swoje domy. Inni utrzymywali, że miejscowość nigdy nie istniała.</p>
+<p><em>Niektórzy twierdzili, że mieszkańcy opuścili swoje domy. Inni utrzymywali, że miejscowość nigdy nie istniała.</em></p>
 
-        <p>Hinako zainteresował się tematem.</p>
+<p><em>Hinako zainteresował się tematem.</em></p>
 
-        <p>Zapytał o nazwę osady.</p>
+<p><em>Zapytał o nazwę osady.</em></p>
 
-        <p>Mężczyzna przez chwilę zastanawiał się nad odpowiedzią. Poruszał ustami, jakby próbował przypomnieć sobie coś bardzo odległego.</p>
+<p><em>Mężczyzna przez chwilę zastanawiał się nad odpowiedzią. Poruszał ustami, jakby próbował przypomnieć sobie coś bardzo odległego.</em></p>
 
-        <p>W końcu pokręcił głową.</p>
+<p><em>W końcu pokręcił głową.</em></p>
 
-        <p>— Nie pamiętam.</p>
+<p><em>Nie pamiętał.</em></p>
 
-        <p>Hinako nie naciskał. Uznał, że starszy człowiek mógł zwyczajnie pomylić kilka historii.</p>
+<p><em>Hinako nie naciskał. Uznał, że starszy człowiek mógł zwyczajnie pomylić kilka historii.</em></p>
 
-        <p>Podziękował za rozmowę i wrócił do miejsca, w którym się zatrzymał.</p>
+<p><em>Podziękował za rozmowę i wrócił do miejsca, w którym się zatrzymał.</em></p>
 
-        <p>Wieczorem otworzył notes.</p>
+<p><em>Wieczorem otworzył notes.</em></p>
 
-        <p>Zapisał kilka informacji dotyczących wspomnianej miejscowości.</p>
+<p><em>Zapisał kilka informacji dotyczących wspomnianej miejscowości.</em></p>
 
-        <p>Następnie zamknął go i odłożył na stolik.</p>
+<p><em>Następnie zamknął go i odłożył na stolik.</em></p>
 
-        <p>Przez chwilę patrzył na okładkę.</p>
+<p><em>Przez chwilę patrzył na okładkę.</em></p>
 
-        <p>Nie wiedział dlaczego, ale miał wrażenie, że czegoś w jego notatkach brakuje.</p>
+<p><em>Nie wiedział dlaczego, ale miał wrażenie, że czegoś w jego notatkach brakuje.</em></p>
 
-      </article>
+    </article>
+</section>
 
-      <div class="chapter-navigation">
-        <a href="hinako-rozdzial1.html">← Poprzedni rozdział</a>
-        <a href="hinako-rozdzial3.html">Następny rozdział →</a>
-      </div>
+</main>
 
-    </section>
+<div class="controls">
+    <button onclick="changeFont(-1)">A−</button>
+    <button onclick="changeFont(1)">A+</button>
+    <button onclick="changeSpacing(-0.1)">Odstępy −</button>
+    <button onclick="changeSpacing(0.1)">Odstępy +</button>
+</div>
 
-    <section class="section-wrap comments-section">
-      <h2>KOMENTARZE</h2>
+<nav class="navigation">
+    <a href="hinako-rozdzial1.html">← POPRZEDNI ROZDZIAŁ</a>
+    <a href="hinako.html">SPIS TREŚCI</a>
+    <a href="hinako-rozdzial3.html">NASTĘPNY ROZDZIAŁ →</a>
+</nav>
 
-      <script src="https://giscus.app/client.js"
-        data-repo="NTsukishiro/n-tsukishiro-site"
-        data-repo-id="R_kgDOV5ZR5g"
-        data-category="General"
-        data-category-id="DIC_kwDOV5ZR5s4DL1EZ"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="purple_dark"
-        data-lang="pl"
-        crossorigin="anonymous"
-        async>
-      </script>
-    </section>
+<footer>
+    N. TSUKISHIRO · HINAKO
+</footer>
 
-  </main>
+<button id="backToTop" aria-label="Wróć na górę">↑</button>
 
-  <footer class="site-footer">
-    <p>© N. TSUKISHIRO</p>
-  </footer>
+<script>
+let fontSize = 19;
+let lineHeight = 1.9;
+
+const chapter = document.querySelector(".prologue-page");
+
+function changeFont(value) {
+    fontSize += value;
+
+    if (fontSize < 14) fontSize = 14;
+    if (fontSize > 28) fontSize = 28;
+
+    chapter.style.fontSize = fontSize + "px";
+}
+
+function changeSpacing(value) {
+    lineHeight += value;
+
+    if (lineHeight < 1.4) lineHeight = 1.4;
+    if (lineHeight > 2.5) lineHeight = 2.5;
+
+    chapter.style.lineHeight = lineHeight;
+}
+
+const progressBar = document.getElementById("reading-progress");
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+    const scrollable =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+    const progress = scrollable > 0
+        ? (window.scrollY / scrollable) * 100
+        : 0;
+
+    progressBar.style.width = progress + "%";
+
+    if (window.scrollY > 400) {
+        backToTop.classList.add("visible");
+    } else {
+        backToTop.classList.remove("visible");
+    }
+});
+
+backToTop.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
 
 </body>
 </html>
