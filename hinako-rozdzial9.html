@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IX. GRANICA | N. Tsukishiro</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #e5e5e5;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: #e5e5e5;
+    z-index: 1000;
+}
+
+.chapter-header {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 8%;
+    overflow: hidden;
+}
+
+.chapter-header h1 {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    font-size: clamp(2.2rem, 8vw, 5rem);
+    letter-spacing: clamp(3px, 1.2vw, 12px);
+    font-weight: normal;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+}
+
+.author {
+    margin-top: 35px;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: #777;
+}
+
+.subtitle {
+    margin-top: 22px;
+    color: #777;
+    font-size: 15px;
+    font-style: italic;
+}
+
+.prologue-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 12%;
+    font-size: 19px;
+    line-height: 1.9;
+}
+
+.prologue-page h2 {
+    text-align: center;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: normal;
+    letter-spacing: 4px;
+    margin-bottom: 65px;
+}
+
+.publication-date {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 65px;
+}
+
+.story p {
+    margin: 0 0 28px;
+}
+
+.story em {
+    font-style: italic;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 70px 0 50px;
+}
+
+.controls button,
+.navigation a,
+#backToTop {
+    background: transparent;
+    border: 1px solid #444;
+    color: #aaa;
+    padding: 10px 16px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.controls button:hover,
+.navigation a:hover,
+#backToTop:hover {
+    color: #fff;
+    border-color: #aaa;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 80px;
+    padding-top: 30px;
+    border-top: 1px solid #222;
+}
+
+footer {
+    text-align: center;
+    padding: 50px 20px;
+    color: #555;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+#backToTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    display: none;
+    z-index: 100;
+    background: #000;
+}
+
+@media (max-width: 600px) {
+    .chapter-header {
+        padding: 35px 7%;
+    }
+
+    .prologue-page {
+        padding: 75px 8%;
+        font-size: 18px;
+        line-height: 1.85;
+    }
+
+    .prologue-page h2 {
+        letter-spacing: 2px;
+        margin-bottom: 45px;
+    }
+
+    .publication-date {
+        margin-bottom: 45px;
+    }
+
+    .navigation {
+        justify-content: center;
+    }
+
+    .navigation a {
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="reading-progress"></div>
+
+<header class="chapter-header">
+    <h1>IX. GRANICA</h1>
+    <div class="author">N. TSUKISHIRO</div>
+    <div class="subtitle">Prefektura Gunma, dwa lata przed wydarzeniami z „Szczura”.</div>
+</header>
+
+<main class="prologue-page">
+
+    <h2>GRANICA</h2>
+
+    <div class="publication-date">
+        HINAKO · ROZDZIAŁ IX
+    </div>
+
+    <article class="story" id="story">
+
+        <p><em>Od momentu poznania prawdy Hinako zaczął inaczej postrzegać mieszkańców.</em></p>
+
+        <p><em>Nie potrafił już rozmawiać z nimi tak swobodnie jak wcześniej.</em></p>
+
+        <p><em>Każde spotkanie wywoływało w nim niepokój. Coraz częściej zastanawiał się, czy ktokolwiek w miejscowości rzeczywiście jest tym, za kogo się podaje.</em></p>
+
+        <p><em>Zaczął kwestionować własne wspomnienia.</em></p>
+
+        <p><em>Nie wiedział, ile czasu spędził w osadzie.</em></p>
+
+        <p><em>Nie potrafił również dokładnie odtworzyć wszystkich wydarzeń, które doprowadziły go do poznania prawdy o Masato.</em></p>
+
+        <p><em>Miał wrażenie, że coś nieustannie mu umyka.</em></p>
+
+        <p><em>Próbował opuścić miejscowość.</em></p>
+
+        <p><em>Tym razem jednak nie zamierzał wracać do wcześniejszych poszukiwań.</em></p>
+
+        <p><em>Chciał po prostu odejść.</em></p>
+
+        <p><em>Droga prowadząca przez las okazała się trudniejsza, niż pamiętał. Hinako kilkukrotnie zatrzymywał się, próbując rozpoznać charakterystyczne miejsca. Niektóre drzewa wydawały mu się znajome.</em></p>
+
+        <p><em>Inne sprawiały wrażenie, jakby nigdy wcześniej ich nie widział. Nie wiedział, czy rzeczywiście podążał właściwą trasą.</em></p>
+
+        <p><em>W końcu udało mu się wydostać z obszaru otaczającego osadę.</em></p>
+
+        <p><em>Nie odwrócił się.</em></p>
+
+        <p><em>Nie chciał sprawdzać, czy miejscowość nadal znajduje się za jego plecami.</em></p>
+
+        <p><em>Kiedy dotarł do znanych sobie terenów, poczuł ulgę.</em></p>
+
+        <p><em>Nie była ona jednak trwała.</em></p>
+
+        <p><em>Przez kolejne dni miał trudności z odpoczynkiem. Niektóre wspomnienia wracały do niego w sposób, którego nie potrafił kontrolować.</em></p>
+
+        <p><em>Czasami nie był pewien, czy wydarzenia z wioski rzeczywiście miały miejsce.</em></p>
+
+        <p><em>Innym razem przypominał sobie szczegóły, których wcześniej nie potrafił odtworzyć.</em></p>
+
+        <p><em>Nie opowiadał nikomu o swojej podróży. Nie wspominał również o tym, czego dowiedział się na temat Masato.</em></p>
+
+        <p><em>Strach okazał się silniejszy od potrzeby ujawnienia prawdy.</em></p>
+
+        <p><em>Nie potrafił zmusić się do działania.</em></p>
+
+        <p><em>Wiedział, że powinien coś zrobić.</em></p>
+
+        <p><em>Jednocześnie nie potrafił przestać myśleć o tym, co mogłoby się wydarzyć, gdyby zdecydował się przemówić.</em></p>
+
+        <p><em>Z czasem zaczął unikać wszystkiego, co przypominało mu o tamtych wydarzeniach.</em></p>
+
+        <p><em>Mimo to nie potrafił pozbyć się wrażenia, że coś z miejscowości powróciło razem z nim.</em></p>
+
+    </article>
+
+    <div class="controls">
+        <button onclick="changeFont(-1)">A−</button>
+        <button onclick="changeFont(1)">A+</button>
+        <button onclick="changeSpacing(-0.1)">Odstępy −</button>
+        <button onclick="changeSpacing(0.1)">Odstępy +</button>
+    </div>
+
+    <nav class="navigation">
+        <a href="hinako-rozdzial8.html">← Poprzedni rozdział</a>
+        <a href="hinako.html">Spis treści</a>
+        <a href="hinako-rozdzial10.html">Następny rozdział →</a>
+    </nav>
+
+</main>
+
+<footer>
+    N. TSUKISHIRO · HINAKO
+</footer>
+
+<button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    ↑
+</button>
+
+<script>
+const progress = document.getElementById("reading-progress");
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percentage = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+    progress.style.width = percentage + "%";
+    backToTop.style.display = scrollTop > 400 ? "block" : "none";
+});
+
+let fontSize = 19;
+let lineSpacing = 1.9;
+
+function changeFont(amount) {
+    fontSize = Math.min(26, Math.max(14, fontSize + amount));
+    document.querySelector(".story").style.fontSize = fontSize + "px";
+}
+
+function changeSpacing(amount) {
+    lineSpacing = Math.min(2.5, Math.max(1.3, lineSpacing + amount));
+    document.querySelector(".story").style.lineHeight = lineSpacing;
+}
+</script>
+
+</body>
+</html>
