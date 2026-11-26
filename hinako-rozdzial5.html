@@ -2,150 +2,340 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Za granicą | Hinako</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V. ZA GRANICĄ | N. Tsukishiro</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #e5e5e5;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: #e5e5e5;
+    z-index: 1000;
+}
+
+.chapter-header {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 8%;
+    overflow: hidden;
+}
+
+.chapter-header h1 {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    font-size: clamp(2.2rem, 8vw, 5rem);
+    letter-spacing: clamp(3px, 1.2vw, 12px);
+    font-weight: normal;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+}
+
+.author {
+    margin-top: 35px;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: #777;
+}
+
+.subtitle {
+    margin-top: 22px;
+    color: #777;
+    font-size: 15px;
+    font-style: italic;
+}
+
+.prologue-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 12%;
+    font-size: 19px;
+    line-height: 1.9;
+}
+
+.prologue-page h2 {
+    text-align: center;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: normal;
+    letter-spacing: 4px;
+    margin-bottom: 65px;
+}
+
+.publication-date {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 65px;
+}
+
+.story p {
+    margin: 0 0 28px;
+}
+
+.story em {
+    font-style: italic;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 70px 0 50px;
+}
+
+.controls button,
+.navigation a,
+#backToTop {
+    background: transparent;
+    border: 1px solid #444;
+    color: #aaa;
+    padding: 10px 16px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.controls button:hover,
+.navigation a:hover,
+#backToTop:hover {
+    color: #fff;
+    border-color: #aaa;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 80px;
+    padding-top: 30px;
+    border-top: 1px solid #222;
+}
+
+footer {
+    text-align: center;
+    padding: 50px 20px;
+    color: #555;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+#backToTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    display: none;
+    z-index: 100;
+    background: #000;
+}
+
+@media (max-width: 600px) {
+    .chapter-header {
+        padding: 35px 7%;
+    }
+
+    .prologue-page {
+        padding: 75px 8%;
+        font-size: 18px;
+        line-height: 1.85;
+    }
+
+    .prologue-page h2 {
+        letter-spacing: 2px;
+        margin-bottom: 45px;
+    }
+
+    .publication-date {
+        margin-bottom: 45px;
+    }
+
+    .navigation {
+        justify-content: center;
+    }
+
+    .navigation a {
+        text-align: center;
+    }
+}
+</style>
 </head>
 
 <body>
 
-  <header class="site-header">
-    <a class="site-logo" href="index.html">N. TSUKISHIRO</a>
+<div id="reading-progress"></div>
 
-    <nav class="site-nav">
-      <a href="index.html">Strona główna</a>
-      <a href="powiesci.html">Powieści</a>
-      <a href="o-autorze.html">O autorze</a>
-      <a href="aktualnosci.html">Aktualności</a>
-      <a href="kontakt.html">Kontakt</a>
-    </nav>
-  </header>
+<header class="chapter-header">
+    <h1>V. ZA GRANICĄ</h1>
+    <div class="author">N. TSUKISHIRO</div>
+    <div class="subtitle">Prefektura Gunma, dwa lata przed wydarzeniami z „Szczura”.</div>
+</header>
 
-  <main>
+<main class="prologue-page">
 
-    <section class="book-page-hero">
-      <p class="eyebrow">HINAKO</p>
-      <h1>ZA GRANICĄ</h1>
-      <p class="book-subtitle">Tam, gdzie kończy się pamięć</p>
-      <p class="chapter-number">ROZDZIAŁ V</p>
-    </section>
+    <h2>ZA GRANICĄ</h2>
 
-    <section class="section-wrap chapter-list">
+    <div class="publication-date">
+        HINAKO · ROZDZIAŁ V
+    </div>
 
-      <article class="chapter-content">
+    <article class="story" id="story">
 
-        <p>Nie spodziewał się zobaczyć czegoś takiego.</p>
+        <p><em>Nie spodziewał się zobaczyć czegoś takiego.</em></p>
 
-        <p>Za linią drzew rozciągała się niewielka miejscowość.</p>
+        <p><em>Za linią drzew rozciągała się niewielka miejscowość.</em></p>
 
-        <p>Znajdowało się tam kilka rzędów drewnianych domów, wąskie uliczki i kapliczka stojąca niedaleko wejścia do osady.</p>
+        <p><em>Znajdowało się tam kilka rzędów drewnianych domów, wąskie uliczki i kapliczka stojąca niedaleko wejścia do osady.</em></p>
 
-        <p>Budynki wyglądały na stare, jednak nie sprawiały wrażenia opuszczonych.</p>
+        <p><em>Budynki wyglądały na stare, jednak nie sprawiały wrażenia opuszczonych.</em></p>
 
-        <p>Domy były ustawione stosunkowo blisko siebie, a pomiędzy nimi przebiegały wąskie, częściowo wybrukowane uliczki. Większość konstrukcji wykonano z ciemnego drewna, które z biegiem lat nabrało głębokiego, nierównomiernego koloru. Niektóre budynki miały niewielkie werandy i przesuwane drzwi, inne posiadały małe okna zasłonięte od wewnątrz papierowymi panelami.</p>
+        <p><em>Domy były ustawione stosunkowo blisko siebie, a pomiędzy nimi przebiegały wąskie, częściowo wybrukowane uliczki. Większość konstrukcji wykonano z ciemnego drewna, które z biegiem lat nabrało głębokiego, nierównomiernego koloru. Niektóre budynki miały niewielkie werandy i przesuwane drzwi, inne posiadały małe okna zasłonięte od wewnątrz papierowymi panelami.</em></p>
 
-        <p>Na dachach znajdowały się tradycyjne dachówki, miejscami porośnięte mchem. Przy kilku domach stały drewniane skrzynie, narzędzia oraz przedmioty codziennego użytku. Wszystko było rozmieszczone w sposób sugerujący, że mieszkańcy korzystają z tych miejsc na co dzień. Nie było jednak widać żadnych nowoczesnych urządzeń ani elementów, które pozwoliłyby Hinako określić, w jakim okresie właściwie się znalazł.</p>
+        <p><em>Na dachach znajdowały się tradycyjne dachówki, miejscami porośnięte mchem. Przy kilku domach stały drewniane skrzynie, narzędzia oraz przedmioty codziennego użytku. Wszystko było rozmieszczone w sposób sugerujący, że mieszkańcy korzystają z tych miejsc na co dzień. Nie było jednak widać żadnych nowoczesnych urządzeń ani elementów, które pozwoliłyby Hinako określić, w jakim okresie właściwie się znalazł.</em></p>
 
-        <p>W centrum osady znajdowała się niewielka przestrzeń, przypominająca plac. Odchodziło od niej kilka uliczek prowadzących w różnych kierunkach. Przy jednym z domów rosło stare drzewo, którego gałęzie rozciągały się nad częścią przejścia. Liście poruszały się powoli, rzucając nieregularne cienie na ziemię.</p>
+        <p><em>W centrum osady znajdowała się niewielka przestrzeń, przypominająca plac. Odchodziło od niej kilka uliczek prowadzących w różnych kierunkach. Przy jednym z domów rosło stare drzewo, którego gałęzie rozciągały się nad częścią przejścia. Liście poruszały się powoli, rzucając nieregularne cienie na ziemię.</em></p>
 
-        <p>Hinako zatrzymał się na chwilę. Zauważył miejsce, które znał tylko z opowieści, był to niewielki plac zabaw, zawierał niewielką huśtawkę oraz zjeżdżalnię.</p>
+        <p><em>Hinako zatrzymał się na chwilę. Zauważył miejsce, które znał tylko z opowieści, był to niewielki plac zabaw, zawierał niewielką huśtawkę, oraz zjeżdżalnie.</em></p>
 
-        <p>Do huśtawki przykuł znacznie większą uwagę, jakaś siła ciągnęła go do niej. Nie potrafił jednak tego wytłumaczyć.</p>
+        <p><em>Do huśtawki przykuł znacznie większą uwagę, jakaś siła ciągnęła go do niej. Nie potrafił jednak tego wytłumaczyć.</em></p>
 
-        <p>Nie potrafił zrozumieć, jakim sposobem miejscowość mogła przez tyle lat pozostawać nieznana mieszkańcom okolicznych terenów.</p>
+        <p><em>Nie potrafił zrozumieć, jakim sposobem miejscowość mogła przez tyle lat pozostawać nieznana mieszkańcom okolicznych terenów.</em></p>
 
-        <p>Rozejrzał się.</p>
+        <p><em>Rozejrzał się.</em></p>
 
-        <p>Nie zauważył żadnych współczesnych oznaczeń ani elementów infrastruktury, których spodziewałby się w zamieszkanej osadzie.</p>
+        <p><em>Nie zauważył żadnych współczesnych oznaczeń ani elementów infrastruktury, których spodziewałby się w zamieszkanej osadzie.</em></p>
 
-        <p>Mimo to z jednego z domów wydobywał się dym.</p>
+        <p><em>Mimo to z jednego z domów wydobywał się dym.</em></p>
 
-        <p>Ktoś musiał tam mieszkać.</p>
+        <p><em>Ktoś musiał tam mieszkać.</em></p>
 
-        <p>Hinako poprawił plecak i ruszył w stronę pierwszych zabudowań.</p>
+        <p><em>Hinako poprawił plecak i ruszył w stronę pierwszych zabudowań.</em></p>
 
-        <p>Przy wejściu do miejscowości znajdowała się niewielka kapliczka.</p>
+        <p><em>Przy wejściu do miejscowości znajdowała się niewielka kapliczka.</em></p>
 
-        <p>Zatrzymał się przed nią.</p>
+        <p><em>Zatrzymał się przed nią.</em></p>
 
-        <p>Jej konstrukcja przypominała mu miejsce, w którym spędził dzieciństwo. Zauważył również kilka przedmiotów rozmieszczonych w sposób, który wydawał mu się znajomy.</p>
+        <p><em>Jej konstrukcja przypominała mu miejsce, w którym spędził dzieciństwo. Zauważył również kilka przedmiotów rozmieszczonych w sposób, który wydawał mu się znajomy.</em></p>
 
-        <p>Nie potrafił jednak przypomnieć sobie, gdzie wcześniej widział podobny układ.</p>
+        <p><em>Nie potrafił jednak przypomnieć sobie, gdzie wcześniej widział podobny układ.</em></p>
 
-        <p>Nie przywiązywał do tego większej uwagi.</p>
+        <p><em>Nie przywiązywał do tego większej uwagi.</em></p>
 
-        <p>Ruszył dalej.</p>
+        <p><em>Ruszył dalej.</em></p>
 
-        <p>Pierwszego mieszkańca spotkał niedaleko jednego z domów.</p>
+        <p><em>Pierwszego mieszkańca spotkał niedaleko jednego z domów.</em></p>
 
-        <p>Mężczyzna siedział na drewnianej ławce i patrzył w kierunku drogi.</p>
+        <p><em>Mężczyzna siedział na drewnianej ławce i patrzył w kierunku drogi.</em></p>
 
-        <p>Hinako przywitał się i zapytał, czy może udzielić mu kilku informacji dotyczących miejscowości.</p>
+        <p><em>Hinako przywitał się i zapytał, czy może udzielić mu kilku informacji dotyczących miejscowości.</em></p>
 
-        <p>Mężczyzna spojrzał na niego.</p>
+        <p><em>Mężczyzna spojrzał na niego.</em></p>
 
-        <p>Nie wyglądał na zaskoczonego jego obecnością.</p>
+        <p><em>Nie wyglądał na zaskoczonego jego obecnością.</em></p>
 
-        <p>Zapytał jedynie, skąd przybywa.</p>
+        <p><em>Zapytał jedynie, skąd przybywa.</em></p>
 
-        <p>Hinako odpowiedział, że z innej części Gunmy i że od pewnego czasu poszukuje informacji o osadzie.</p>
+        <p><em>Hinako odpowiedział, że z innej części Gunmy i że od pewnego czasu poszukuje informacji o osadzie.</em></p>
 
-        <p>Mężczyzna przez chwilę milczał.</p>
+        <p><em>Mężczyzna przez chwilę milczał.</em></p>
 
-        <p>Następnie wskazał ręką drogę prowadzącą w głąb miejscowości.</p>
+        <p><em>Następnie wskazał ręką drogę prowadzącą w głąb miejscowości.</em></p>
 
-        <p>Powiedział, że jeśli Hinako chce dowiedzieć się czegoś więcej, powinien porozmawiać z pozostałymi mieszkańcami.</p>
+        <p><em>Powiedział, że jeśli Hinako chce dowiedzieć się czegoś więcej, powinien porozmawiać z pozostałymi mieszkańcami.</em></p>
 
-        <p>Hinako podziękował.</p>
+        <p><em>Hinako podziękował.</em></p>
 
-        <p>Kiedy odchodził, mężczyzna odezwał się jeszcze raz.</p>
+        <p><em>Kiedy odchodził, mężczyzna odezwał się jeszcze raz.</em></p>
 
-        <p>Zapytał, czy Hinako zamierza zostać na noc.</p>
+        <p><em>Zapytał, czy Hinako zamierza zostać na noc.</em></p>
 
-        <p>Chłopak odwrócił się.</p>
+        <p><em>Chłopak odwrócił się.</em></p>
 
-        <p>Odpowiedział, że jeszcze nie wie.</p>
+        <p><em>Odpowiedział, że jeszcze nie wie.</em></p>
 
-        <p>Mężczyzna skinął głową.</p>
+        <p><em>Mężczyzna skinął głową.</em></p>
 
-        <p>Nie powiedział już nic więcej.</p>
+        <p><em>Nie powiedział już nic więcej.</em></p>
 
-      </article>
+    </article>
 
-      <div class="chapter-navigation">
+    <div class="controls">
+        <button onclick="changeFont(-1)">A−</button>
+        <button onclick="changeFont(1)">A+</button>
+        <button onclick="changeSpacing(-0.1)">Odstępy −</button>
+        <button onclick="changeSpacing(0.1)">Odstępy +</button>
+    </div>
+
+    <nav class="navigation">
         <a href="hinako-rozdzial4.html">← Poprzedni rozdział</a>
+        <a href="hinako.html">Spis treści</a>
         <a href="hinako-rozdzial6.html">Następny rozdział →</a>
-      </div>
+    </nav>
 
-    </section>
+</main>
 
-    <section class="section-wrap comments-section">
-      <h2>KOMENTARZE</h2>
+<footer>
+    N. TSUKISHIRO · HINAKO
+</footer>
 
-      <script src="https://giscus.app/client.js"
-        data-repo="NTsukishiro/n-tsukishiro-site"
-        data-repo-id="R_kgDOV5ZR5g"
-        data-category="General"
-        data-category-id="DIC_kwDOV5ZR5s4DL1EZ"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="purple_dark"
-        data-lang="pl"
-        crossorigin="anonymous"
-        async>
-      </script>
-    </section>
+<button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    ↑
+</button>
 
-  </main>
+<script>
+const progress = document.getElementById("reading-progress");
+const backToTop = document.getElementById("backToTop");
 
-  <footer class="site-footer">
-    <p>© N. TSUKISHIRO</p>
-  </footer>
+window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percentage = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+    progress.style.width = percentage + "%";
+    backToTop.style.display = scrollTop > 400 ? "block" : "none";
+});
+
+let fontSize = 19;
+let lineSpacing = 1.9;
+
+function changeFont(amount) {
+    fontSize = Math.min(26, Math.max(14, fontSize + amount));
+    document.querySelector(".story").style.fontSize = fontSize + "px";
+}
+
+function changeSpacing(amount) {
+    lineSpacing = Math.min(2.5, Math.max(1.3, lineSpacing + amount));
+    document.querySelector(".story").style.lineHeight = lineSpacing;
+}
+</script>
 
 </body>
 </html>
