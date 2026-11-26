@@ -2,168 +2,495 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
 
-    <title>II. NIE ZNAM CIĘ. | SZCZUR</title>
+<title>2. NIE ZNAM CIĘ | N. Tsukishiro</title>
 
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #e5e5e5;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+/* PASEK POSTĘPU */
+
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #e5e5e5;
+    z-index: 9999;
+}
+
+/* NAGŁÓWEK ROZDZIAŁU */
+
+.chapter-header {
+    min-height: 100vh;
+    width: 100%;
+    padding: 80px 12%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #000;
+}
+
+.author {
+    color: #555;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.chapter-header h1 {
+    font-size: 48px;
+    font-weight: normal;
+    letter-spacing: 12px;
+    color: #eee;
+    animation: appear 2s ease;
+    margin: 0;
+}
+
+.subtitle {
+    margin-top: 30px;
+    color: #777;
+    font-size: 16px;
+    font-style: italic;
+}
+
+/* TREŚĆ ROZDZIAŁU */
+
+.prologue-page {
+    justify-content: flex-start;
+    padding: 100px 12%;
+    gap: 28px;
+    line-height: 1.9;
+    font-size: 19px;
+    background: #000;
+}
+
+.prologue-page h2 {
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 8px;
+    font-weight: normal;
+    margin: 0 0 30px;
+}
+
+.publication-date {
+    text-align: center;
+    color: #555;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 2px;
+    margin-top: -10px;
+    margin-bottom: 35px;
+}
+
+.prologue-page p {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.story .center {
+    text-align: center;
+}
+
+.story .dialogue {
+    font-style: italic;
+    margin: 0;
+}
+
+.story .scene-break {
+    text-align: center;
+    color: #999;
+    letter-spacing: 5px;
+    margin: 30px 0;
+}
+
+.story .section-end {
+    text-align: center;
+    margin-top: 60px;
+    letter-spacing: 2px;
+}
+
+.story .no-indent {
+    text-indent: 0;
+}
+
+/* ANIMACJE */
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* PRZYCISKI CZYTANIA */
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 45px 15px;
+    font-family: Arial, sans-serif;
+    background: #000;
+}
+
+button {
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #333;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    color: white;
+    border-color: #aaa;
+}
+
+/* NAWIGACJA */
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 25px 12%;
+    border-top: 1px solid #292929;
+    font-family: Arial, sans-serif;
+}
+
+.navigation a {
+    color: #999;
+    text-decoration: none;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.navigation a:hover {
+    color: white;
+}
+
+/* STOPKA */
+
+footer {
+    text-align: center;
+    padding: 40px 15px;
+    color: #444;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 3px;
+}
+
+/* POWRÓT NA GÓRĘ */
+
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #333;
+    background: #080808;
+    color: #aaa;
+    font-size: 20px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+    transition: 0.3s;
+}
+
+#backToTop.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#backToTop:hover {
+    color: white;
+    border-color: #aaa;
+    background: #151515;
+}
+
+/* TELEFONY */
+
+@media (max-width: 600px) {
+    .chapter-header {
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+
+    .chapter-header h1 {
+        font-size: 38px;
+        letter-spacing: 9px;
+    }
+
+    .prologue-page {
+        font-size: 18px;
+        line-height: 1.85;
+        padding: 75px 8%;
+    }
+
+    .navigation {
+        padding-left: 8%;
+        padding-right: 8%;
+        flex-direction: column;
+    }
+
+    .navigation a {
+        text-align: center;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <main>
+<div id="reading-progress"></div>
 
-        <!-- NAGŁÓWEK ROZDZIAŁU -->
-        <section class="chapter-heading">
-            <div class="book-title">SZCZUR</div>
+<main>
 
-            <h1>NIE ZNAM CIĘ.</h1>
+<!-- TYTUŁ ROZDZIAŁU -->
 
-            <div class="chapter-number">02 / ROZDZIAŁ</div>
+<section class="chapter-header">
+    <div class="author">N. TSUKISHIRO</div>
 
-            <div class="publication-date">
-                OPUBLIKOWANO: 27.11.2026
-            </div>
-        </section>
+    <h1>2. NIE ZNAM CIĘ.</h1>
 
-
-        <!-- TREŚĆ ROZDZIAŁU -->
-        <section class="chapter-content">
-
-            <p><em>Ren przez długą chwilę wpatrywał się w list.</em></p>
-
-            <p><em>Przesuwał wzrokiem po kolejnych linijkach tekstu, powoli odkrywając jego treść.</em></p>
-
-            <p><em>Drogi Renie,</em></p>
-
-            <p><em>Wiem, że nie masz zielonego pojęcia kim jestem. To dobrze. Wiedz jednak, że nie zostawię cię w spokoju.</em></p>
-
-            <p><em>Ren zmarszczył brwi. Nie przypominał sobie, żeby kiedyś otrzymał podobną wiadomość. Przez chwilę zastanawiał się, czy nie jest to zwykły żart, jednak sposób, w jaki napisano te słowa, pozbawił go tego przekonania.</em></p>
-
-            <p><em>Zatrzymał wzrok na ostatnim zdaniu. Nie podobał mu się jego wydźwięk. Autor pisał tak, jakby znał go osobiście, a jednocześnie zapewniał, że Ren nie ma pojęcia, kim jest. Ta sprzeczność wydawała mu się dziwnie niepokojąca.</em></p>
-
-            <p><em>Przesunął wzrok niżej. Początek kolejnego zdania był nieczytelny. Kilka słów zostało całkowicie zniszczonych, pozostawiając jedynie fragment dalszej części wiadomości.</em></p>
-
-            <p><em>........................., jesteś tylko wredną kopią oryginału, który w końcu zaczął walczyć o swoje prawa.</em></p>
-
-            <p><em>Nie bierz tego do siebie, nie czuję do ciebie urazy, jedynie się tobą brzydzę.</em></p>
-
-            <p><em>Czytał to samo zdanie kilkukrotnie. Coś jednak nie dawało mu spokoju.</em></p>
-
-            <p><em>Nie potrafił zrozumieć, co autor miał na myśli. Kopią? Oryginału? Przez chwilę zastanawiał się, czy nie jest to jakaś forma metafory, jednak nie potrafił znaleźć dla niej odpowiedniego znaczenia.</em></p>
-
-            <p><em>Przeniósł wzrok na kolejne słowa.</em></p>
-
-            <p><em>Że taki ktoś jak ty, zastąpił swoje oryginalne „ja”</em></p>
-
-            <p><em>Przez chwilę nie poruszył się. Jeszcze raz przeczytał ostatnie zdanie. Tym razem znacznie wolniej. Nie rozumiał, dlaczego ktoś miałby pisać o nim w taki sposób.</em></p>
-
-            <p><em>Intuicja podpowiadała mu, że może to mieć związek z jego dzieciństwem. Nie wiedział jednak, czy w tej sytuacji może się na niej opierać.</em></p>
-
-            <p><em>Ktoś próbuje mu przekazać informacje, których do końca nie potrafi zrozumieć.</em></p>
-
-            <p><em>Przecież nigdy nie miał wrażenia, aby był kimś innym niż sobą.</em></p>
-
-            <p><em>Postanawiam położyć kres tej niepewności. Wszyscy odpowiedzialni za nasze dzieciństwo - Tu zdanie się urywa.</em></p>
-
-            <p><em>Milczenie zostało przerwane.</em></p>
-
-            <p><em>Przesunął palcem po zapisanej linijce, zatrzymując go przy jednym ze słów.</em></p>
-
-            <p><em>„Nasze”.</em></p>
-
-            <p><em>Przeczytał je ponownie. Nie wiedział, dlaczego właśnie ten fragment przykuł jego uwagę. Przecież mogło to być zwykłe niedopatrzenie autora. Mimo wszystko coś w tym określeniu wydawało mu się nie na miejscu.</em></p>
-
-            <p><em>Odłożył kartkę na chwilę, próbując uporządkować własne myśli.</em></p>
-
-            <p><em>Zastanawiał się nad znaczeniem tego słowa. Być może autor miał na myśli coś zupełnie innego. Może również przeżył podobne dzieciństwo, a cała wiadomość była jedynie próbą odniesienia się do własnych doświadczeń.</em></p>
-
-            <p><em>Ren czuł coraz większy mętlik w głowie. Z każdym kolejnym zdaniem coraz trudniej było mu zebrać myśli. Zauważył, że jego oddech stał się płytszy, jednak starał się zachować spokój. Panika nigdy nie należała do jego zwyczajów.</em></p>
-
-            <p><em>PS. Człowiek, którego tak bardzo cenisz, nie jest tym, za kogo się podaje.</em></p>
-
-            <p><em>Ten fragment zaniepokoił go bardziej niż pozostała część listu. Nie dlatego, że sugerował istnienie jakiejś tajemnicy, lecz dlatego, że dotyczył kogoś, komu ufał. Nigdy wcześniej nie zastanawiał się nad tym, czy ludzie, których zna, mogą skrywać przed nim zupełnie inne oblicze. Zawsze uważał, że dobrze zna osoby, które go otaczają. Wiedział, komu może zaufać, a od kogo powinien trzymać się z daleka. Nie widział powodu, by podważać te przekonania. Przecież przez lata zdążył poznać ich zachowania, przyzwyczajenia i sposób, w jaki odnosili się do innych.</em></p>
-
-            <p><em>A przynajmniej tak mu się wydawało.</em></p>
-
-            <p><em>Teraz jednak jedno zdanie wystarczyło, by zachwiać tym przekonaniem. Zaczął zastanawiać się, czy kiedykolwiek naprawdę znał ludzi, którym ufał, czy może jedynie widział w nich to, co sami chcieli mu pokazać.</em></p>
-
-            <p><em>Próbował przypomnieć sobie sytuacje, w których mógł przeoczyć coś istotnego. Rozmowy, które z perspektywy czasu mogły nabrać zupełnie innego znaczenia, zachowania, na które wcześniej nie zwracał uwagi. Nie potrafił jednak znaleźć niczego konkretnego.</em></p>
-
-            <p><em>Być może autor listu próbował jedynie wzbudzić w nim nieufność. Nie znał przecież jego intencji, a tym bardziej nie miał pewności, czy wszystkie zawarte w wiadomości informacje były prawdziwe. Mimo to nie potrafił całkowicie zignorować przeczytanych słów.</em></p>
-
-            <p><em>Ponownie spojrzał na kartkę. Miał wrażenie, że pomimo kilku przeczytanych fragmentów nadal nie poznał najważniejszej części wiadomości.</em></p>
-
-            <p><em>Jego uwagę przykuł koniec kartki, który wydawał się wycięty. Nie przypominał dotychczasowych uszkodzeń tekstu. Wyglądało to raczej na celowe usunięcie fragmentu wiadomości.</em></p>
-
-            <p><em>Ostrożnie odwrócił kartkę. Dopiero wtedy zauważył niewielki fragment papieru przyklejony do jej tylnej strony.</em></p>
-
-            <p><em>Znajdował się na nim tylko jeden napis.</em></p>
-
-            <h2 class="chapter-emphasis">SZCZUR.</h2>
-
-            <div class="chapter-break">* * *</div>
-
-            <p><em>Za oknem zrobiło się już ciemno, śnieg z powrotem zaczął spadać z nieba, powoli wpadając przez szczeliny domu. Światło ulicznych lamp rozlewało się na białych powierzchniach, tworząc niewielkie, jasne plamy.</em></p>
-
-            <p><em>Ren zastanawiał się, kto lub co mógł zostawić list.</em></p>
-
-            <p><em>Przez całe dzieciństwo wpajano mu, że świat, w którym żyje, zamieszkują również istoty ze świata duchowego. Niektóre są nieszkodliwe, natomiast są też takie, których nie powinno się drażnić.</em></p>
-
-            <p><em>Chłopak nigdy nie brał tego zbyt dosłownie, uważał, że są to tylko legendy, stworzone po to, by podporządkować sobie młodsze pokolenia.</em></p>
-
-            <p><em>Najbardziej zapadła mu w pamięci pewna legenda o rybaku, który,</em></p>
-
-            <p><em>zaślepiony własnymi przekonaniami, kazał swoim dzieciom przestrzegać zasad, które sam ustanowił. Historia wydawała mu się zbyt naciągana, żeby była prawdziwa. Uważał, że jest już wystarczająco dorosły, by odróżnić zwykłą opowieść od rzeczywistości.</em></p>
-
-            <p><em>Dlatego też nie wierzył, by za zniknięciem Hinako mogło stać cokolwiek, o czym opowiadały dawne legendy. Musiała istnieć inna przyczyna, nawet jeśli na ten moment nie potrafił jej odnaleźć.</em></p>
-
-            <div class="chapter-break">* * *</div>
-
-        </section>
+    <div class="subtitle">
+        Historia o przeszłości, której Ren nie potrafi sobie przypomnieć
+    </div>
+</section>
 
 
-        <!-- NAWIGACJA -->
-        <nav class="chapter-navigation">
-            <a href="rozdzial1.html">← POPRZEDNI ROZDZIAŁ</a>
-            <a href="szczur.html">SPIS TREŚCI</a>
-            <a href="rozdzial3.html">NASTĘPNY ROZDZIAŁ →</a>
-        </nav>
+<!-- TREŚĆ ROZDZIAŁU -->
 
+<section class="book-page prologue-page" id="rozdzial">
 
-        <!-- KOMENTARZE -->
-        <section class="comments-section">
-            <div class="section-wrap">
-                <h2>KOMENTARZE</h2>
+    <h2>NIE ZNAM CIĘ.</h2>
 
-                <script src="https://giscus.app/client.js"
-                    data-repo="NTsukishiro/n-tsukishiro-site"
-                    data-repo-id="REPO_ID"
-                    data-category="General"
-                    data-category-id="CATEGORY_ID"
-                    data-mapping="pathname"
-                    data-strict="0"
-                    data-reactions-enabled="1"
-                    data-emit-metadata="0"
-                    data-input-position="bottom"
-                    data-theme="dark"
-                    data-lang="pl"
-                    crossorigin="anonymous"
-                    async>
-                </script>
-            </div>
-        </section>
+    <div class="publication-date">
+        OPUBLIKOWANO: 27.11.2026
+    </div>
 
-    </main>
+    <article class="story">
 
+<p><em>Ren przez długą chwilę wpatrywał się w list.</em></p>
 
-    <!-- STOPKA -->
-    <footer>
-        <p>N. TSUKISHIRO</p>
-        <p>SZCZUR</p>
-    </footer>
+<p><em>Przesuwał wzrokiem po kolejnych linijkach tekstu, powoli odkrywając jego treść.</em></p>
+
+<p><em>Drogi Renie,</em></p>
+
+<p><em>Wiem, że nie masz zielonego pojęcia kim jestem. To dobrze. Wiedz jednak, że nie zostawię cię w spokoju.</em></p>
+
+<p><em>Ren zmarszczył brwi. Nie przypominał sobie, żeby kiedyś otrzymał podobną wiadomość. Przez chwilę zastanawiał się, czy nie jest to zwykły żart, jednak sposób, w jaki napisano te słowa, pozbawił go tego przekonania.</em></p>
+
+<p><em>Zatrzymał wzrok na ostatnim zdaniu. Nie podobał mu się jego wydźwięk. Autor pisał tak, jakby znał go osobiście, a jednocześnie zapewniał, że Ren nie ma pojęcia, kim jest. Ta sprzeczność wydawała mu się dziwnie niepokojąca.</em></p>
+
+<p><em>Przesunął wzrok niżej. Początek kolejnego zdania był nieczytelny. Kilka słów zostało całkowicie zniszczonych, pozostawiając jedynie fragment dalszej części wiadomości.</em></p>
+
+<p><em>........................., jesteś tylko wredną kopią oryginału, który w końcu zaczął walczyć o swoje prawa.</em></p>
+
+<p><em>Nie bierz tego do siebie, nie czuję do ciebie urazy, jedynie się tobą brzydzę.</em></p>
+
+<p><em>Czytał to samo zdanie kilkukrotnie. Coś jednak nie dawało mu spokoju.</em></p>
+
+<p><em>Nie potrafił zrozumieć, co autor miał na myśli. Kopią? Oryginału? Przez chwilę zastanawiał się, czy nie jest to jakaś forma metafory, jednak nie potrafił znaleźć dla niej odpowiedniego znaczenia.</em></p>
+
+<p><em>Przeniósł wzrok na kolejne słowa.</em></p>
+
+<p><em>Że taki ktoś jak ty, zastąpił swoje oryginalne ,, ja’’</em></p>
+
+<p><em>Przez chwilę nie poruszył się. Jeszcze raz przeczytał ostatnie zdanie. Tym razem znacznie wolniej. Nie rozumiał, dlaczego ktoś miałby pisać o nim w taki sposób.</em></p>
+
+<p><em>Intuicja podpowiadała mu, że może to mieć związek z jego dzieciństwem. Nie wiedział jednak, czy w tej sytuacji może się na niej opierać.</em></p>
+
+<p><em>Ktoś próbuje mu przekazać informacje, których do końca nie potrafi zrozumieć.</em></p>
+
+<p><em>Przecież nigdy nie miał wrażenia, aby był kimś innym niż sobą.</em></p>
+
+<p><em>Postanawiam położyć kres tej niepewności. Wszyscy odpowiedzialni za nasze dzieciństwo - Tu zdanie się urywa.</em></p>
+
+<p><em>Milczenie zostało przerwane.</em></p>
+
+<p><em>Przesunął palcem po zapisanej linijce, zatrzymując go przy jednym ze słów.</em></p>
+
+<p><em>„Nasze”.</em></p>
+
+<p><em>Przeczytał je ponownie. Nie wiedział, dlaczego właśnie ten fragment przykuł jego uwagę. Przecież mogło to być zwykłe niedopatrzenie autora. Mimo wszystko coś w tym określeniu wydawało mu się nie na miejscu.</em></p>
+
+<p><em>Odłożył kartkę na chwilę, próbując uporządkować własne myśli.</em></p>
+
+<p><em>Zastanawiał się nad znaczeniem tego słowa. Być może autor miał na myśli coś zupełnie innego. Może również przeżył podobne dzieciństwo, a cała wiadomość była jedynie próbą odniesienia się do własnych doświadczeń.</em></p>
+
+<p><em>Ren czuł coraz większy mętlik w głowie. Z każdym kolejnym zdaniem coraz trudniej było mu zebrać myśli. Zauważył, że jego oddech stał się płytszy, jednak starał się zachować spokój. Panika nigdy nie należała do jego zwyczajów.</em></p>
+
+<p><em>PS. Człowiek, którego tak bardzo cenisz, nie jest tym, za kogo się podaje.</em></p>
+
+<p><em>Ten fragment zaniepokoił go bardziej niż pozostała część listu. Nie dlatego, że sugerował istnienie jakiejś tajemnicy, lecz dlatego, że dotyczył kogoś, komu ufał. Nigdy wcześniej nie zastanawiał się nad tym, czy ludzie, których zna, mogą skrywać przed nim zupełnie inne oblicze. Zawsze uważał, że dobrze zna osoby, które go otaczają. Wiedział, komu może zaufać, a od kogo powinien trzymać się z daleka. Nie widział powodu, by podważać te przekonania. Przecież przez lata zdążył poznać ich zachowania, przyzwyczajenia i sposób, w jaki odnosili się do innych.</em></p>
+
+<p><em>A przynajmniej tak mu się wydawało.</em></p>
+
+<p><em>Teraz jednak jedno zdanie wystarczyło, by zachwiać tym przekonaniem. Zaczął zastanawiać się, czy kiedykolwiek naprawdę znał ludzi, którym ufał, czy może jedynie widział w nich to, co sami chcieli mu pokazać.</em></p>
+
+<p><em>Próbował przypomnieć sobie sytuacje, w których mógł przeoczyć coś istotnego. Rozmowy, które z perspektywy czasu mogły nabrać zupełnie innego znaczenia, zachowania, na które wcześniej nie zwracał uwagi. Nie potrafił jednak znaleźć niczego konkretnego.</em></p>
+
+<p><em>Być może autor listu próbował jedynie wzbudzić w nim nieufność. Nie znał przecież jego intencji, a tym bardziej nie miał pewności, czy wszystkie zawarte w wiadomości informacje były prawdziwe. Mimo to nie potrafił całkowicie zignorować przeczytanych słów.</em></p>
+
+<p><em>Ponownie spojrzał na kartkę. Miał wrażenie, że pomimo kilku przeczytanych fragmentów nadal nie poznał najważniejszej części wiadomości.</em></p>
+
+<p><em>Jego uwagę przykuł koniec kartki, który wydawał się wycięty. Nie przypominał dotychczasowych uszkodzeń tekstu. Wyglądało to raczej na celowe usunięcie fragmentu wiadomości</em></p>
+
+<p><em>Ostrożnie odwrócił kartkę. Dopiero wtedy zauważył niewielki fragment papieru przyklejony do jej tylnej strony.</em></p>
+
+<p><em>Znajdował się na nim tylko jeden napis.</em></p>
+
+<p class="center"><strong>SZCZUR.</strong></p>
+
+<p class="scene-break">* * *</p>
+
+<p><em>Za oknem zrobiło się już ciemno, śnieg z powrotem zaczął spadać z nieba, powoli wpadając przez szczeliny domu. Światło ulicznych lamp rozlewało się na białych powierzchniach, tworząc niewielkie, jasne plamy</em></p>
+
+<p><em>Ren zastanawiał się, kto lub co mógł zostawić list.</em></p>
+
+<p><em>Przez całe dzieciństwo wpajano mu, że świat, w którym żyje, zamieszkują również istoty ze świata duchowego. Niektóre są nieszkodliwe, natomiast są też takie, których nie powinno się drażnić.</em></p>
+
+<p><em>Chłopak nigdy nie brał tego zbyt dosłownie, uważał, że są to tylko legendy, stworzone po to, by podporządkować sobie młodsze pokolenia.</em></p>
+
+<p><em>Najbardziej zapadła mu w pamięci pewna legenda o rybaku, który,</em></p>
+
+<p><em>zaślepiony własnymi przekonaniami, kazał swoim dzieciom przestrzegać zasad, które sam ustanowił. Historia wydawała mu się zbyt naciągana, żeby była prawdziwa. Uważał, że jest już wystarczająco dorosły, by odróżnić zwykłą opowieść od rzeczywistości.</em></p>
+
+<p><em>Dlatego też nie wierzył, by za zniknięciem Hinako mogło stać cokolwiek, o czym opowiadały dawne legendy. Musiała istnieć inna przyczyna, nawet jeśli na ten moment nie potrafił jej odnaleźć.</em></p>
+
+<p class="section-end"><strong>ROZDZIAŁ: 2 &nbsp; KONIEC.</strong></p>
+
+    </article>
+
+</section>
+
+</main>
+
+<!-- PRZYCISKI CZYTANIA -->
+
+<div class="controls">
+
+    <button onclick="changeFont(-1)">A−</button>
+
+    <button onclick="changeFont(1)">A+</button>
+
+    <button onclick="changeSpacing(-0.1)">Odstępy −</button>
+
+    <button onclick="changeSpacing(0.1)">Odstępy +</button>
+
+</div>
+
+<nav class="navigation">
+
+    <a href="rozdzial1.html">← POPRZEDNI ROZDZIAŁ</a>
+
+    <a href="szczur.html">SPIS TREŚCI</a>
+
+    <a href="rozdzial3.html">NASTĘPNY ROZDZIAŁ →</a>
+
+</nav>
+
+<footer>
+    N. TSUKISHIRO · SZCZUR
+</footer>
+
+<button id="backToTop" aria-label="Wróć na górę">↑</button>
+
+<script>
+
+/* ZMIANA WIELKOŚCI TEKSTU */
+
+let fontSize = 19;
+let lineHeight = 1.9;
+
+const chapter = document.querySelector(".prologue-page");
+
+function changeFont(value) {
+
+    fontSize += value;
+
+    if (fontSize < 14) fontSize = 14;
+    if (fontSize > 28) fontSize = 28;
+
+    chapter.style.fontSize = fontSize + "px";
+
+}
+
+function changeSpacing(value) {
+
+    lineHeight += value;
+
+    if (lineHeight < 1.4) lineHeight = 1.4;
+    if (lineHeight > 2.5) lineHeight = 2.5;
+
+    chapter.style.lineHeight = lineHeight;
+
+}
+
+/* PASEK POSTĘPU */
+
+const progressBar = document.getElementById("reading-progress");
+
+/* POWRÓT NA GÓRĘ */
+
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+
+    const scrollable =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+    const progress = scrollable > 0
+        ? (window.scrollY / scrollable) * 100
+        : 0;
+
+    progressBar.style.width = progress + "%";
+
+    if (window.scrollY > 400) {
+        backToTop.classList.add("visible");
+    } else {
+        backToTop.classList.remove("visible");
+    }
+
+});
+
+backToTop.addEventListener("click", () => {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+</script>
 
 </body>
 </html>
