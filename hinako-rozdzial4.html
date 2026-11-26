@@ -2,132 +2,382 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Droga | Hinako</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<title>IV. DROGA | N. Tsukishiro</title>
+
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    background: #000;
+    color: #e5e5e5;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #e5e5e5;
+    z-index: 9999;
+}
+
+.chapter-header {
+    min-height: 100vh;
+    min-height: 100svh;
+    width: 100%;
+    padding: 80px 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #000;
+    overflow: hidden;
+}
+
+.author {
+    color: #555;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.chapter-header h1 {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(25px, 6vw, 48px);
+    font-weight: normal;
+    letter-spacing: clamp(2px, 1.2vw, 10px);
+    line-height: 1.2;
+    color: #eee;
+    animation: appear 2s ease;
+    margin: 0;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+}
+
+.subtitle {
+    margin-top: 30px;
+    color: #777;
+    font-size: clamp(14px, 2.5vw, 16px);
+    font-style: italic;
+    max-width: 100%;
+    line-height: 1.6;
+}
+
+.prologue-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 100px 12%;
+    gap: 28px;
+    line-height: 1.9;
+    font-size: 19px;
+    background: #000;
+}
+
+.prologue-page h2 {
+    text-align: center;
+    font-size: clamp(20px, 4vw, 30px);
+    letter-spacing: clamp(2px, 1vw, 8px);
+    font-weight: normal;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    margin: 0 0 30px;
+}
+
+.publication-date {
+    text-align: center;
+    color: #555;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 2px;
+    line-height: 1.7;
+    margin-top: -10px;
+    margin-bottom: 35px;
+}
+
+.prologue-page p {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 45px 15px;
+    font-family: Arial, sans-serif;
+    background: #000;
+}
+
+button {
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #333;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    color: white;
+    border-color: #aaa;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 25px 12%;
+    border-top: 1px solid #292929;
+    font-family: Arial, sans-serif;
+}
+
+.navigation a {
+    color: #999;
+    text-decoration: none;
+    font-size: 12px;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.navigation a:hover { color: white; }
+
+footer {
+    text-align: center;
+    padding: 40px 15px;
+    color: #444;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 3px;
+}
+
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #333;
+    background: #080808;
+    color: #aaa;
+    font-size: 20px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+    transition: 0.3s;
+}
+
+#backToTop.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#backToTop:hover {
+    color: white;
+    border-color: #aaa;
+    background: #151515;
+}
+
+@media (max-width: 600px) {
+    .chapter-header { padding: 70px 7%; }
+
+    .chapter-header h1 {
+        font-size: clamp(23px, 8vw, 38px);
+        letter-spacing: clamp(1px, 1.5vw, 6px);
+    }
+
+    .prologue-page {
+        font-size: 18px;
+        line-height: 1.85;
+        padding: 75px 8%;
+    }
+
+    .navigation {
+        padding: 25px 8%;
+        flex-direction: column;
+    }
+
+    .navigation a { text-align: center; }
+
+    #backToTop {
+        right: 16px;
+        bottom: 16px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-  <header class="site-header">
-    <a class="site-logo" href="index.html">N. TSUKISHIRO</a>
+<div id="reading-progress"></div>
 
-    <nav class="site-nav">
-      <a href="index.html">Strona główna</a>
-      <a href="powiesci.html">Powieści</a>
-      <a href="o-autorze.html">O autorze</a>
-      <a href="aktualnosci.html">Aktualności</a>
-      <a href="kontakt.html">Kontakt</a>
-    </nav>
-  </header>
+<main>
 
-  <main>
+<section class="chapter-header">
+    <div class="author">N. TSUKISHIRO</div>
+    <h1>IV. DROGA</h1>
+    <div class="subtitle">
+        Prefektura Gunma, dwa lata przed wydarzeniami z „Szczura”.
+    </div>
+</section>
 
-    <section class="book-page-hero">
-      <p class="eyebrow">HINAKO</p>
-      <h1>DROGA</h1>
-      <p class="book-subtitle">Tam, gdzie kończy się pamięć</p>
-      <p class="chapter-number">ROZDZIAŁ IV</p>
-    </section>
+<section class="prologue-page" id="rozdzial">
 
-    <section class="section-wrap chapter-list">
+    <h2>DROGA</h2>
 
-      <article class="chapter-content">
+    <div class="publication-date">
+        HINAKO · ROZDZIAŁ IV
+    </div>
 
-        <p>Hinako wyruszył kilka dni później.</p>
+    <article class="story">
 
-        <p>Podróż nie należała do szczególnie skomplikowanych. Początkowo korzystał z transportu publicznego, a następnie kontynuował drogę pieszo.</p>
+<p><em>Hinako wyruszył kilka dni później.</em></p>
 
-        <p>Z każdym kolejnym kilometrem zabudowania stawały się coraz rzadsze.</p>
+<p><em>Podróż nie należała do szczególnie skomplikowanych. Początkowo korzystał z transportu publicznego, a następnie kontynuował drogę pieszo.</em></p>
 
-        <p>Droga prowadziła przez górskie tereny, otoczone gęstymi lasami. Miejscami nawierzchnia była nierówna, a niektóre odcinki wyglądały na dawno nieużytkowane.</p>
+<p><em>Z każdym kolejnym kilometrem zabudowania stawały się coraz rzadsze.</em></p>
 
-        <p>Las ciągnął się po obu stronach drogi, tworząc długi pas zieleni, przez który tylko miejscami przebijało się światło. Wysokie drzewa zasłaniały znaczną część nieba, a ich korony poruszały się delikatnie pod wpływem wiatru. W niektórych miejscach pomiędzy pniami można było dostrzec niewielkie fragmenty skalistych zboczy oraz porośnięte mchem kamienie.</p>
+<p><em>Droga prowadziła przez górskie tereny, otoczone gęstymi lasami. Miejscami nawierzchnia była nierówna, a niektóre odcinki wyglądały na dawno nieużytkowane.</em></p>
 
-        <p>Powietrze było chłodniejsze niż w miejscowościach, które Hinako odwiedzał wcześniej. Wraz z oddalaniem się od głównej drogi zanikały również odgłosy samochodów. Pozostawał jedynie szum liści i sporadyczne dźwięki dochodzące z głębi lasu. Cała okolica sprawiała wrażenie spokojnej, choć jednocześnie trudno było oprzeć się wrażeniu, że niewiele osób zapuszczało się w te strony.</p>
+<p><em>Las ciągnął się po obu stronach drogi, tworząc długi pas zieleni, przez który tylko miejscami przebijało się światło. Wysokie drzewa zasłaniały znaczną część nieba, a ich korony poruszały się delikatnie pod wpływem wiatru. W niektórych miejscach pomiędzy pniami można było dostrzec niewielkie fragmenty skalistych zboczy oraz porośnięte mchem kamienie.</em></p>
 
-        <p>Hinako kilkukrotnie zatrzymywał się, aby sprawdzić mapę.</p>
+<p><em>Powietrze było chłodniejsze niż w miejscowościach, które Hinako odwiedzał wcześniej. Wraz z oddalaniem się od głównej drogi zanikały również odgłosy samochodów. Pozostawał jedynie szum liści i sporadyczne dźwięki dochodzące z głębi lasu. Cała okolica sprawiała wrażenie spokojnej, choć jednocześnie trudno było oprzeć się wrażeniu, że niewiele osób zapuszczało się w te strony.</em></p>
 
-        <p>Nie miał pewności, czy zmierza we właściwym kierunku.</p>
+<p><em>Hinako kilkukrotnie zatrzymywał się, aby sprawdzić mapę.</em></p>
 
-        <p>W końcu dotarł do niewielkiego miejsca, w którym według starych zapisów powinna znajdować się droga prowadząca do osady.</p>
+<p><em>Nie miał pewności, czy zmierza we właściwym kierunku.</em></p>
 
-        <p>Nie znalazł jednak żadnego oznaczenia.</p>
+<p><em>W końcu dotarł do niewielkiego miejsca, w którym według starych zapisów powinna znajdować się droga prowadząca do osady.</em></p>
 
-        <p>Jedynie wąską ścieżkę prowadzącą pomiędzy drzewami.</p>
+<p><em>Nie znalazł jednak żadnego oznaczenia.</em></p>
 
-        <p>Przez chwilę zastanawiał się, czy powinien kontynuować podróż.</p>
+<p><em>Jedynie wąską ścieżkę prowadzącą pomiędzy drzewami.</em></p>
 
-        <p>W końcu ruszył dalej.</p>
+<p><em>Przez chwilę zastanawiał się, czy powinien kontynuować podróż.</em></p>
 
-        <p>Las stawał się coraz gęstszy. Z czasem przestał słyszeć odgłosy dochodzące z drogi, którą wcześniej podążał.</p>
+<p><em>W końcu ruszył dalej.</em></p>
 
-        <p>Nie potrafił określić, ile czasu minęło od momentu, w którym skręcił ze szlaku.</p>
+<p><em>Las stawał się coraz gęstszy. Z czasem przestał słyszeć odgłosy dochodzące z drogi, którą wcześniej podążał.</em></p>
 
-        <p>W pewnej chwili zauważył coś pomiędzy drzewami.</p>
+<p><em>Nie potrafił określić, ile czasu minęło od momentu, w którym skręcił ze szlaku.</em></p>
 
-        <p>Był to fragment drewnianej konstrukcji.</p>
+<p><em>W pewnej chwili zauważył coś pomiędzy drzewami.</em></p>
 
-        <p>Podszedł bliżej.</p>
+<p><em>Był to fragment drewnianej konstrukcji.</em></p>
 
-        <p>Okazało się, że znajdowała się tam stara tablica. Jej powierzchnia była niemal całkowicie zniszczona, a zapisany na niej tekst nie nadawał się do odczytania.</p>
+<p><em>Podszedł bliżej.</em></p>
 
-        <p>Hinako próbował rozpoznać pojedyncze znaki.</p>
+<p><em>Okazało się, że znajdowała się tam stara tablica. Jej powierzchnia była niemal całkowicie zniszczona, a zapisany na niej tekst nie nadawał się do odczytania.</em></p>
 
-        <p>Bezskutecznie.</p>
+<p><em>Hinako próbował rozpoznać pojedyncze znaki.</em></p>
 
-        <p>Zrobił kilka zdjęć i ruszył dalej.</p>
+<p><em>Bezskutecznie.</em></p>
 
-        <p>Po pewnym czasie drzewa zaczęły się przerzedzać.</p>
+<p><em>Zrobił kilka zdjęć i ruszył dalej.</em></p>
 
-        <p>Przed nim pojawiła się niewielka droga.</p>
+<p><em>Po pewnym czasie drzewa zaczęły się przerzedzać.</em></p>
 
-        <p>Nie przypominała leśnej ścieżki, którą wcześniej podążał.</p>
+<p><em>Przed nim pojawiła się niewielka droga.</em></p>
 
-        <p>Była wyraźnie przygotowana do ruchu ludzi.</p>
+<p><em>Nie przypominała leśnej ścieżki, którą wcześniej podążał.</em></p>
 
-        <p>Hinako zatrzymał się.</p>
+<p><em>Była wyraźnie przygotowana do ruchu ludzi.</em></p>
 
-        <p>Przez chwilę patrzył przed siebie.</p>
+<p><em>Hinako zatrzymał się.</em></p>
 
-        <p>Następnie ruszył w kierunku, w którym prowadziła.</p>
+<p><em>Przez chwilę patrzył przed siebie.</em></p>
 
-      </article>
+<p><em>Następnie ruszył w kierunku, w którym prowadziła.</em></p>
 
-      <div class="chapter-navigation">
-        <a href="hinako-rozdzial3.html">← Poprzedni rozdział</a>
-        <a href="hinako-rozdzial5.html">Następny rozdział →</a>
-      </div>
+    </article>
+</section>
 
-    </section>
+</main>
 
-    <section class="section-wrap comments-section">
-      <h2>KOMENTARZE</h2>
+<div class="controls">
+    <button onclick="changeFont(-1)">A−</button>
+    <button onclick="changeFont(1)">A+</button>
+    <button onclick="changeSpacing(-0.1)">Odstępy −</button>
+    <button onclick="changeSpacing(0.1)">Odstępy +</button>
+</div>
 
-      <script src="https://giscus.app/client.js"
-        data-repo="NTsukishiro/n-tsukishiro-site"
-        data-repo-id="R_kgDOV5ZR5g"
-        data-category="General"
-        data-category-id="DIC_kwDOV5ZR5s4DL1EZ"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="purple_dark"
-        data-lang="pl"
-        crossorigin="anonymous"
-        async>
-      </script>
-    </section>
+<nav class="navigation">
+    <a href="hinako-rozdzial3.html">← POPRZEDNI ROZDZIAŁ</a>
+    <a href="hinako.html">SPIS TREŚCI</a>
+    <a href="hinako-rozdzial5.html">NASTĘPNY ROZDZIAŁ →</a>
+</nav>
 
-  </main>
+<footer>
+    N. TSUKISHIRO · HINAKO
+</footer>
 
-  <footer class="site-footer">
-    <p>© N. TSUKISHIRO</p>
-  </footer>
+<button id="backToTop" aria-label="Wróć na górę">↑</button>
+
+<script>
+let fontSize = 19;
+let lineHeight = 1.9;
+
+const chapter = document.querySelector(".prologue-page");
+
+function changeFont(value) {
+    fontSize += value;
+
+    if (fontSize < 14) fontSize = 14;
+    if (fontSize > 28) fontSize = 28;
+
+    chapter.style.fontSize = fontSize + "px";
+}
+
+function changeSpacing(value) {
+    lineHeight += value;
+
+    if (lineHeight < 1.4) lineHeight = 1.4;
+    if (lineHeight > 2.5) lineHeight = 2.5;
+
+    chapter.style.lineHeight = lineHeight;
+}
+
+const progressBar = document.getElementById("reading-progress");
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+    const scrollable =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+    const progress = scrollable > 0
+        ? (window.scrollY / scrollable) * 100
+        : 0;
+
+    progressBar.style.width = progress + "%";
+
+    if (window.scrollY > 400) {
+        backToTop.classList.add("visible");
+    } else {
+        backToTop.classList.remove("visible");
+    }
+});
+
+backToTop.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
 
 </body>
 </html>
