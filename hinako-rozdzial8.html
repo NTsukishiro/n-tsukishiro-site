@@ -2,204 +2,400 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Głosy przeszłości | Hinako - N. Tsukishiro</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIII. GŁOSY PRZESZŁOŚCI | N. Tsukishiro</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #e5e5e5;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: #e5e5e5;
+    z-index: 1000;
+}
+
+.chapter-header {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 8%;
+    overflow: hidden;
+}
+
+.chapter-header h1 {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    font-size: clamp(2.2rem, 8vw, 5rem);
+    letter-spacing: clamp(3px, 1.2vw, 12px);
+    font-weight: normal;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+}
+
+.author {
+    margin-top: 35px;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: #777;
+}
+
+.subtitle {
+    margin-top: 22px;
+    color: #777;
+    font-size: 15px;
+    font-style: italic;
+}
+
+.prologue-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 12%;
+    font-size: 19px;
+    line-height: 1.9;
+}
+
+.prologue-page h2 {
+    text-align: center;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: normal;
+    letter-spacing: 4px;
+    margin-bottom: 65px;
+}
+
+.publication-date {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 65px;
+}
+
+.story p {
+    margin: 0 0 28px;
+}
+
+.story em {
+    font-style: italic;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 70px 0 50px;
+}
+
+.controls button,
+.navigation a,
+#backToTop {
+    background: transparent;
+    border: 1px solid #444;
+    color: #aaa;
+    padding: 10px 16px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.controls button:hover,
+.navigation a:hover,
+#backToTop:hover {
+    color: #fff;
+    border-color: #aaa;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 80px;
+    padding-top: 30px;
+    border-top: 1px solid #222;
+}
+
+footer {
+    text-align: center;
+    padding: 50px 20px;
+    color: #555;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+#backToTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    display: none;
+    z-index: 100;
+    background: #000;
+}
+
+@media (max-width: 600px) {
+    .chapter-header {
+        padding: 35px 7%;
+    }
+
+    .prologue-page {
+        padding: 75px 8%;
+        font-size: 18px;
+        line-height: 1.85;
+    }
+
+    .prologue-page h2 {
+        letter-spacing: 2px;
+        margin-bottom: 45px;
+    }
+
+    .publication-date {
+        margin-bottom: 45px;
+    }
+
+    .navigation {
+        justify-content: center;
+    }
+
+    .navigation a {
+        text-align: center;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <header class="site-header">
-        <a href="index.html" class="site-logo">N. TSUKISHIRO</a>
+<div id="reading-progress"></div>
 
-        <nav class="site-nav">
-            <a href="index.html">Strona główna</a>
-            <a href="index.html#powiesci">Powieści</a>
-            <a href="index.html#autor">O autorze</a>
-            <a href="index.html#kontakt">Kontakt</a>
-        </nav>
-    </header>
+<header class="chapter-header">
+    <h1>VIII. GŁOSY PRZESZŁOŚCI</h1>
+    <div class="author">N. TSUKISHIRO</div>
+    <div class="subtitle">Prefektura Gunma, dwa lata przed wydarzeniami z „Szczura”.</div>
+</header>
 
-    <main>
-        <section class="book-page-hero">
-            <p class="eyebrow">HINAKO</p>
-            <h1>GŁOSY PRZESZŁOŚCI</h1>
-            <p class="book-subtitle">Tam, gdzie kończy się pamięć</p>
-            <p class="chapter-number">ROZDZIAŁ VIII</p>
-        </section>
+<main class="prologue-page">
 
-        <section class="section-wrap chapter-list">
-            <article class="chapter-content">
+    <h2>GŁOSY PRZESZŁOŚCI</h2>
 
-                <p>Hinako coraz częściej wracał myślami do swojego dzieciństwa.</p>
+    <div class="publication-date">
+        HINAKO · ROZDZIAŁ VIII
+    </div>
 
-                <p>Przypominał sobie ojca, kapliczkę i rytuały, których nigdy nie zrozumiał.</p>
+    <article class="story" id="story">
 
-                <p>Zaczął dostrzegać podobieństwa pomiędzy tym, czego nauczył się jako dziecko, a tym, co obserwował w miejscowości.</p>
+        <p><em>Hinako coraz częściej wracał myślami do swojego dzieciństwa.</em></p>
 
-                <p>Nie wiedział jednak, czy powinien traktować je jako dowód na istnienie czegoś nadnaturalnego.</p>
+        <p><em>Przypominał sobie ojca, kapliczkę i rytuały, których nigdy nie zrozumiał.</em></p>
 
-                <p>Pewnego dnia dotarł do miejsca, w którym odnalazł coś, czego nie potrafił racjonalnie wyjaśnić. Starą kapliczkę.</p>
+        <p><em>Zaczął dostrzegać podobieństwa pomiędzy tym, czego nauczył się jako dziecko, a tym, co obserwował w miejscowości.</em></p>
 
-                <p>Z czasem zaczął rozumieć, że miejscowość nie jest zwyczajną osadą.</p>
+        <p><em>Nie wiedział jednak, czy powinien traktować je jako dowód na istnienie czegoś nadnaturalnego.</em></p>
 
-                <p>Granica pomiędzy tym, co żywe, a tym, co umarłe, wydawała się tutaj znacznie mniej wyraźna.</p>
+        <p><em>Pewnego dnia dotarł do miejsca, w którym odnalazł coś, czego nie potrafił racjonalnie wyjaśnić. Starą kapliczkę.</em></p>
 
-                <p>Hinako przez dłuższą chwilę przyglądał się kapliczce.</p>
+        <p><em>Z czasem zaczął rozumieć, że miejscowość nie jest zwyczajną osadą.</em></p>
 
-                <p>W jej wnętrzu panowała cisza, przerywana jedynie odgłosami wiatru przedostającego się przez szczeliny w drewnie. Stare deski skrzypiały przy każdym jego ruchu. Na niewielkim ołtarzu znajdowały się przedmioty, których przeznaczenia nie potrafił dokładnie określić.</p>
+        <p><em>Granica pomiędzy tym, co żywe, a tym, co umarłe, wydawała się tutaj znacznie mniej wyraźna.</em></p>
 
-                <p>Mimo to coś wydawało mu się znajome.</p>
+        <p><em>Hinako przez dłuższą chwilę przyglądał się kapliczce.</em></p>
 
-                <p>Przypomniał sobie ojca.</p>
+        <p><em>W jej wnętrzu panowała cisza, przerywana jedynie odgłosami wiatru przedostającego się przez szczeliny w drewnie. Stare deski skrzypiały przy każdym jego ruchu. Na niewielkim ołtarzu znajdowały się przedmioty, których przeznaczenia nie potrafił dokładnie określić.</em></p>
 
-                <p>Nie pamiętał wszystkich szczegółów jego pracy. Był wtedy jeszcze dzieckiem, a większość wspomnień z tamtego okresu zdążyła już stracić wyraźne kształty. Pamiętał jednak wieczory, podczas których ojciec zamykał się w kapliczce i wykonywał czynności, których Hinako nigdy nie rozumiał.</p>
+        <p><em>Mimo to coś wydawało mu się znajome.</em></p>
 
-                <p>Zawsze wyglądało to podobnie.</p>
+        <p><em>Przypomniał sobie ojca.</em></p>
 
-                <p>Te same przedmioty.</p>
+        <p><em>Nie pamiętał wszystkich szczegółów jego pracy. Był wtedy jeszcze dzieckiem, a większość wspomnień z tamtego okresu zdążyła już stracić wyraźne kształty. Pamiętał jednak wieczory, podczas których ojciec zamykał się w kapliczce i wykonywał czynności, których Hinako nigdy nie rozumiał.</em></p>
 
-                <p>Te same gesty.</p>
+        <p><em>Zawsze wyglądało to podobnie.</em></p>
 
-                <p>Ta sama cisza.</p>
+        <p><em>Te same przedmioty.</em></p>
 
-                <p>Hinako postanowił spróbować odtworzyć jeden z rytuałów, które obserwował przed laty.</p>
+        <p><em>Te same gesty.</em></p>
 
-                <p>Nie był pewien, czy robi to poprawnie. Nie znał jego pełnego znaczenia ani celu. Kierował się jedynie tym, co pozostało w jego pamięci.</p>
+        <p><em>Ta sama cisza.</em></p>
 
-                <p>Ułożył przedmioty na ołtarzu.</p>
+        <p><em>Hinako postanowił spróbować odtworzyć jeden z rytuałów, które obserwował przed laty.</em></p>
 
-                <p>Przez chwilę zastanawiał się, czy powinien kontynuować.</p>
+        <p><em>Nie był pewien, czy robi to poprawnie. Nie znał jego pełnego znaczenia ani celu. Kierował się jedynie tym, co pozostało w jego pamięci.</em></p>
 
-                <p>W końcu jednak wykonał pierwszy gest.</p>
+        <p><em>Ułożył przedmioty na ołtarzu.</em></p>
 
-                <p>Potem kolejny.</p>
+        <p><em>Przez chwilę zastanawiał się, czy powinien kontynuować.</em></p>
 
-                <p>Wypowiedział kilka słów, których znaczenia nie potrafił już sobie przypomnieć. Brzmiały obco, choć kiedyś musiały być dla niego czymś zupełnie zwyczajnym. Ich dźwięk powoli wypełnił niewielkie pomieszczenie.</p>
+        <p><em>W końcu jednak wykonał pierwszy gest.</em></p>
 
-                <p>Początkowo nic się nie wydarzyło.</p>
+        <p><em>Potem kolejny.</em></p>
 
-                <p>Hinako zakończył rytuał i opuścił ręce.</p>
+        <p><em>Wypowiedział kilka słów, których znaczenia nie potrafił już sobie przypomnieć. Brzmiały obco, choć kiedyś musiały być dla niego czymś zupełnie zwyczajnym. Ich dźwięk powoli wypełnił niewielkie pomieszczenie.</em></p>
 
-                <p>Przez kilka sekund stał nieruchomo, czekając na jakikolwiek znak. Nie wiedział, czego właściwie oczekiwał. Być może liczył na to, że przypomni sobie coś więcej z dawnych lat.</p>
+        <p><em>Początkowo nic się nie wydarzyło.</em></p>
 
-                <p>Wtedy płomień stojącej obok świecy zadrżał.</p>
+        <p><em>Hinako zakończył rytuał i opuścił ręce.</em></p>
 
-                <p>Nie było to nic szczególnego. W kapliczce znajdowały się liczne szczeliny, przez które mógł przedostawać się wiatr.</p>
+        <p><em>Przez kilka sekund stał nieruchomo, czekając na jakikolwiek znak. Nie wiedział, czego właściwie oczekiwał. Być może liczył na to, że przypomni sobie coś więcej z dawnych lat.</em></p>
 
-                <p>Jednak chwilę później zgasł.</p>
+        <p><em>Wtedy płomień stojącej obok świecy zadrżał.</em></p>
 
-                <p>Hinako spojrzał w stronę wejścia.</p>
+        <p><em>Nie było to nic szczególnego. W kapliczce znajdowały się liczne szczeliny, przez które mógł przedostawać się wiatr.</em></p>
 
-                <p>Powietrze stało się dziwnie ciężkie. Miał wrażenie, że pomieszczenie nagle się zmniejszyło, a cisza, która wcześniej wydawała mu się naturalna, zaczęła przytłaczać.</p>
+        <p><em>Jednak chwilę później zgasł.</em></p>
 
-                <p>Wtedy usłyszał czyjś głos.</p>
+        <p><em>Hinako spojrzał w stronę wejścia.</em></p>
 
-                <p>Był cichy i niewyraźny.</p>
+        <p><em>Powietrze stało się dziwnie ciężkie. Miał wrażenie, że pomieszczenie nagle się zmniejszyło, a cisza, która wcześniej wydawała mu się naturalna, zaczęła przytłaczać.</em></p>
 
-                <p>Nie potrafił określić, skąd dochodził.</p>
+        <p><em>Wtedy usłyszał czyjś głos.</em></p>
 
-                <p>Odwrócił się, lecz nikogo nie zobaczył.</p>
+        <p><em>Był cichy i niewyraźny.</em></p>
 
-                <p>Przez moment pomyślał, że to jedynie zmęczenie. Ostatnie dni spędził na badaniu miejscowości, a brak snu mógł wpływać na jego percepcję.</p>
+        <p><em>Nie potrafił określić, skąd dochodził.</em></p>
 
-                <p>Wtedy głos odezwał się ponownie.</p>
+        <p><em>Odwrócił się, lecz nikogo nie zobaczył.</em></p>
 
-                <p>Tym razem usłyszał dwa głosy.</p>
+        <p><em>Przez moment pomyślał, że to jedynie zmęczenie. Ostatnie dni spędził na badaniu miejscowości, a brak snu mógł wpływać na jego percepcję.</em></p>
 
-                <p>Nie rozpoznawał ich. Nie znał ich brzmienia, nie pamiętał twarzy osób, do których należały. Nie miał żadnego wspomnienia, które mogłoby pomóc mu ustalić ich tożsamość.</p>
+        <p><em>Wtedy głos odezwał się ponownie.</em></p>
 
-                <p>Mimo to poczuł, że nie są przypadkowymi ludźmi.</p>
+        <p><em>Tym razem usłyszał dwa głosy.</em></p>
 
-                <p>Zrobił krok w tył.</p>
+        <p><em>Nie rozpoznawał ich. Nie znał ich brzmienia, nie pamiętał twarzy osób, do których należały. Nie miał żadnego wspomnienia, które mogłoby pomóc mu ustalić ich tożsamość.</em></p>
 
-                <p>Na końcu kapliczki dostrzegł dwie niewyraźne sylwetki. Stały obok siebie, nieruchomo, jakby od dłuższego czasu czekały, aż ktoś w końcu zwróci na nie uwagę.</p>
+        <p><em>Mimo to poczuł, że nie są przypadkowymi ludźmi.</em></p>
 
-                <p>Hinako nie potrafił wydobyć z siebie żadnego słowa.</p>
+        <p><em>Zrobił krok w tył.</em></p>
 
-                <p>Nie wiedział, że rytuał, który właśnie odtworzył, nie był zwykłą modlitwą.</p>
+        <p><em>Na końcu kapliczki dostrzegł dwie niewyraźne sylwetki. Stały obok siebie, nieruchomo, jakby od dłuższego czasu czekały, aż ktoś w końcu zwróci na nie uwagę.</em></p>
 
-                <p>Nie wiedział również, że jego ojciec nigdy nie wykonywał go bez konkretnego powodu.</p>
+        <p><em>Hinako nie potrafił wydobyć z siebie żadnego słowa.</em></p>
 
-                <p>Przypadkowo otworzył coś, co powinno pozostać zamknięte.</p>
+        <p><em>Nie wiedział, że rytuał, który właśnie odtworzył, nie był zwykłą modlitwą.</em></p>
 
-                <p>A osoby, które pojawiły się przed nim, nie należały już do świata żywych.</p>
+        <p><em>Nie wiedział również, że jego ojciec nigdy nie wykonywał go bez konkretnego powodu.</em></p>
 
-                <p>Początkowo nie wiedział, z kim ma do czynienia. Nie rozpoznawał twarzy ani głosów. Nie miał również żadnych konkretnych wspomnień, do których mógłby się odwołać.</p>
+        <p><em>Przypadkowo otworzył coś, co powinno pozostać zamknięte.</em></p>
 
-                <p>Wiedział jedynie, że te osoby kiedyś istniały.</p>
+        <p><em>A osoby, które pojawiły się przed nim, nie należały już do świata żywych.</em></p>
 
-                <p>Pamiętał historię, którą znał od dzieciństwa. Rodzice Rena zostali zamordowani, gdy ten był jeszcze bardzo mały. Nie znał szczegółów.</p>
+        <p><em>Początkowo nie wiedział, z kim ma do czynienia. Nie rozpoznawał twarzy ani głosów. Nie miał również żadnych konkretnych wspomnień, do których mógłby się odwołać.</em></p>
 
-                <p>Znał jedynie jej zakończenie.</p>
+        <p><em>Wiedział jedynie, że te osoby kiedyś istniały.</em></p>
 
-                <p>Nigdy wcześniej nie miał powodu, aby zastanawiać się nad szczegółami tamtej sprawy. Była częścią przeszłości jego przyjaciela, o której nie rozmawiało się zbyt często.</p>
+        <p><em>Pamiętał historię, którą znał od dzieciństwa. Rodzice Rena zostali zamordowani, gdy ten był jeszcze bardzo mały. Nie znał szczegółow.</em></p>
 
-                <p>Tym razem jednak przeszłość przestała być jedynie historią.</p>
+        <p><em>Znał jedynie jej zakończenie.</em></p>
 
-                <p>Osoby, z którymi nawiązał kontakt, przedstawiły mu coś, czego nie potrafił od razu zaakceptować.</p>
+        <p><em>Nigdy wcześniej nie miał powodu, aby zastanawiać się nad szczegółami tamtej sprawy. Była częścią przeszłości jego przyjaciela, o której nie rozmawiało się zbyt często.</em></p>
 
-                <p>Byli to zmarli rodzice Rena.</p>
+        <p><em>Tym razem jednak przeszłość przestała być jedynie historią.</em></p>
 
-                <p>Hinako nie wiedział, czego właściwie od niego oczekiwali. Nie potrafił również zrozumieć, dlaczego zdecydowali się ujawnić właśnie przed nim.</p>
+        <p><em>Osoby, z którymi nawiązał kontakt, przedstawiły mu coś, czego nie potrafił od razu zaakceptować.</em></p>
 
-                <p>Nie usłyszał od nich zwykłej opowieści.</p>
+        <p><em>Byli to zmarli rodzice Rena.</em></p>
 
-                <p>Nie otrzymał również wyjaśnienia w formie, którą mógłby później spokojnie zapisać w notesie.</p>
+        <p><em>Hinako nie wiedział, czego właściwie od niego oczekiwali. Nie potrafił również zrozumieć, dlaczego zdecydowali się ujawnić właśnie przed nim.</em></p>
 
-                <p>Niektóre informacje wydawały się niekompletne, inne zupełnie pozbawione kontekstu. Miał wrażenie, że poznaje fragmenty historii, których kolejności nie potrafił ustalić.</p>
+        <p><em>Nie usłyszał od nich zwykłej opowieści.</em></p>
 
-                <p>Z czasem zaczął rozumieć, że nie chodziło wyłącznie o przeszłość rodziny Rena.</p>
+        <p><em>Nie otrzymał również wyjaśnienia w formie, którą mógłby później spokojnie zapisać w notesie.</em></p>
 
-                <p>Dowiedział się czegoś, co dotyczyło również Masato.</p>
+        <p><em>Niektóre informacje wydawały się niekompletne, inne zupełnie pozbawione kontekstu. Miał wrażenie, że poznaje fragmenty historii, których kolejności nie potrafił ustalić.</em></p>
 
-                <p>Czegoś, co zmieniało znaczenie wydarzeń, o których dotychczas wiedział.</p>
+        <p><em>Z czasem zaczął rozumieć, że nie chodziło wyłącznie o przeszłość rodziny Rena.</em></p>
 
-                <p>Prawdy o Masato.</p>
+        <p><em>Dowiedział się czegoś, co dotyczyło również Masato.</em></p>
 
-                <p>Hinako próbował uporządkować informacje, które do niego dotarły.</p>
+        <p><em>Czegoś, co zmieniało znaczenie wydarzeń, o których dotychczas wiedział.</em></p>
 
-                <p>Nie potrafił jednak znaleźć w sobie wystarczającej pewności, aby uwierzyć we wszystko, czego doświadczył.</p>
+        <p><em>Prawdy o Masato.</em></p>
 
-                <p>Wiedział tylko, że niektóre rzeczy, które usłyszał, nie mogły pochodzić od przypadkowych osób.</p>
+        <p><em>Hinako próbował uporządkować informacje, które do niego dotarły.</em></p>
 
-                <p>Nie powiedział o tym nikomu.</p>
+        <p><em>Nie potrafił jednak znaleźć w sobie wystarczającej pewności, aby uwierzyć we wszystko, czego doświadczył.</em></p>
 
-                <p>Nie wiedział jeszcze, że jego milczenie będzie miało konsekwencje znacznie poważniejsze, niż mógł przypuszczać.</p>
+        <p><em>Wiedział tylko, że niektóre rzeczy, które usłyszał, nie mogły pochodzić od przypadkowych osób.</em></p>
 
-            </article>
+        <p><em>Nie powiedział o tym nikomu.</em></p>
 
-            <div class="chapter-navigation">
-                <a href="hinako-rozdzial7.html">← Poprzedni rozdział</a>
-                <a href="hinako-rozdzial9.html">Następny rozdział →</a>
-            </div>
-        </section>
+        <p><em>Nie wiedział jeszcze, że jego milczenie będzie miało konsekwencje znacznie poważniejsze, niż mógł przypuszczać.</em></p>
 
-        <section class="section-wrap comments-section">
-            <h2>Komentarze</h2>
+    </article>
 
-            <script src="https://giscus.app/client.js"
-                data-repo="NTsukishiro/n-tsukishiro-site"
-                data-repo-id="R_kgDOV5ZR5g"
-                data-category="General"
-                data-category-id="DIC_kwDOV5ZR5s4DL1EZ"
-                data-mapping="pathname"
-                data-strict="0"
-                data-reactions-enabled="1"
-                data-emit-metadata="0"
-                data-input-position="bottom"
-                data-theme="purple_dark"
-                data-lang="pl"
-                crossorigin="anonymous"
-                async>
-            </script>
-        </section>
-    </main>
+    <div class="controls">
+        <button onclick="changeFont(-1)">A−</button>
+        <button onclick="changeFont(1)">A+</button>
+        <button onclick="changeSpacing(-0.1)">Odstępy −</button>
+        <button onclick="changeSpacing(0.1)">Odstępy +</button>
+    </div>
 
-    <footer class="site-footer">
-        <p>© N. Tsukishiro</p>
-    </footer>
+    <nav class="navigation">
+        <a href="hinako-rozdzial7.html">← Poprzedni rozdział</a>
+        <a href="hinako.html">Spis treści</a>
+        <a href="hinako-rozdzial9.html">Następny rozdział →</a>
+    </nav>
+
+</main>
+
+<footer>
+    N. TSUKISHIRO · HINAKO
+</footer>
+
+<button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    ↑
+</button>
+
+<script>
+const progress = document.getElementById("reading-progress");
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percentage = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+    progress.style.width = percentage + "%";
+    backToTop.style.display = scrollTop > 400 ? "block" : "none";
+});
+
+let fontSize = 19;
+let lineSpacing = 1.9;
+
+function changeFont(amount) {
+    fontSize = Math.min(26, Math.max(14, fontSize + amount));
+    document.querySelector(".story").style.fontSize = fontSize + "px";
+}
+
+function changeSpacing(amount) {
+    lineSpacing = Math.min(2.5, Math.max(1.3, lineSpacing + amount));
+    document.querySelector(".story").style.lineHeight = lineSpacing;
+}
+</script>
 
 </body>
 </html>
