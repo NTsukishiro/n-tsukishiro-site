@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X. MILCZENIE | N. Tsukishiro</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #e5e5e5;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: #e5e5e5;
+    z-index: 1000;
+}
+
+.chapter-header {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 8%;
+    overflow: hidden;
+}
+
+.chapter-header h1 {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    font-size: clamp(42px, 9vw, 100px);
+    letter-spacing: clamp(3px, 1.5vw, 12px);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+    font-weight: normal;
+}
+
+.author {
+    margin-top: 35px;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: #777;
+}
+
+.subtitle {
+    margin-top: 18px;
+    color: #777;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.prologue-page {
+    max-width: 1100px;
+    margin: auto;
+    padding: 100px 12%;
+    font-size: 19px;
+    line-height: 1.9;
+}
+
+.prologue-page h2 {
+    text-align: center;
+    font-size: clamp(25px, 5vw, 38px);
+    font-weight: normal;
+    letter-spacing: 5px;
+    margin-bottom: 65px;
+}
+
+.chapter-label {
+    text-align: center;
+    color: #777;
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-bottom: 65px;
+}
+
+.prologue-page p {
+    margin: 0 0 27px;
+}
+
+.chapter-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 65px 0;
+}
+
+.chapter-controls button,
+.navigation a,
+#backToTop {
+    background: transparent;
+    border: 1px solid #444;
+    color: #aaa;
+    padding: 10px 16px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.chapter-controls button:hover,
+.navigation a:hover,
+#backToTop:hover {
+    color: #fff;
+    border-color: #aaa;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 90px;
+    padding-top: 35px;
+    border-top: 1px solid #222;
+}
+
+footer {
+    text-align: center;
+    color: #555;
+    font-size: 12px;
+    letter-spacing: 3px;
+    padding: 50px 15px;
+}
+
+#backToTop {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
+    background: #000;
+    z-index: 100;
+}
+
+@media (max-width: 600px) {
+    .prologue-page {
+        padding: 75px 8%;
+        font-size: 18px;
+        line-height: 1.85;
+    }
+
+    .prologue-page h2 {
+        margin-bottom: 45px;
+        letter-spacing: 3px;
+    }
+
+    .chapter-label {
+        margin-bottom: 45px;
+    }
+
+    .navigation {
+        justify-content: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="reading-progress"></div>
+
+<header class="chapter-header">
+    <h1>X. MILCZENIE</h1>
+    <div class="author">N. TSUKISHIRO</div>
+    <div class="subtitle">Prefektura Gunma, dwa lata przed wydarzeniami z „Szczura”.</div>
+</header>
+
+<main class="prologue-page">
+
+<h2>MILCZENIE</h2>
+
+<div class="chapter-label">HINAKO · ROZDZIAŁ X</div>
+
+<p><em>Powrót do codzienności nie okazał się tak prosty, jak Hinako początkowo zakładał.</em></p>
+
+<p><em>Próbował zajmować się zwyczajnymi sprawami, spotykać z ludźmi i wrócić do dawnych zainteresowań.</em></p>
+
+<p><em>Nie potrafił jednak zapomnieć o miejscowości.</em></p>
+
+<p><em>Czasami miał wrażenie, że rozpoznaje znajome miejsca, choć nigdy wcześniej ich nie odwiedzał.</em></p>
+
+<p><em>Innym razem budził się z przekonaniem, że poprzedniego dnia wydarzyło się coś, czego nie potrafił sobie przypomnieć.</em></p>
+
+<p><em>Niektóre przedmioty w jego otoczeniu wydawały mu się obce.</em></p>
+
+<p><em>Zdarzało się, że przez dłuższą chwilę zastanawiał się, skąd się wzięły.</em></p>
+
+<p><em>Próbował nie zwracać na to uwagi.</em></p>
+
+<p><em>Nie chciał ponownie wracać myślami do wydarzeń z wioski.</em></p>
+
+<p><em>Wciąż jednak pozostawała prawda o Masato.</em></p>
+
+<p><em>Hinako wiedział, co się wydarzyło.</em></p>
+
+<p><em>Wiedział również, że Ren nie zna całej historii swoich rodziców.</em></p>
+
+<p><em>Mimo to milczał.</em></p>
+
+<p><em>Nie potrafił wyjaśnić samemu sobie, dlaczego nie zdobył się na ujawnienie informacji. Strach przed konsekwencjami, wspomnienia z wioski i niepewność dotycząca własnych doświadczeń sprawiały, że za każdym razem odkładał tę decyzję.</em></p>
+
+<p><em>Z czasem nauczył się żyć z tym ciężarem.</em></p>
+
+<p><em>Nie oznaczało to jednak, że zapomniał.</em></p>
+
+<p><em>Dwa lata później w domu Hinako znajdował się stół, który wcześniej należał do Rena.</em></p>
+
+<p><em>Sam Hinako nie wiedział, skąd dokładnie się tam wziął.</em></p>
+
+<p><em>Stół stał u Rena jeszcze poprzedniego dnia, gdy Hinako go odwiedził, nie potrafił tego zrozumieć.</em></p>
+
+<p><em>Nie potrafił również wyjaśnić, dlaczego niektóre przedmioty w jego domu pojawiały się w miejscach, których sobie nie przypominał i dlaczego notatki, które sporządził podczas podróży znikły.</em></p>
+
+<p><em>Pewnego dnia otrzymał list.</em></p>
+
+<p><em>Nie wyglądał na szczególnie ważny. Papier był jednak uszkodzony, a jego powierzchnię pokrywały ślady przypominające ślady zębów szczurów.</em></p>
+
+<p><em>Hinako nie wiedział, kto go przygotował.</em></p>
+
+<p><em>Nie wiedział również, dlaczego właśnie on miał go otrzymać.</em></p>
+
+<p><em>Nie zdawał sobie sprawy, że ktoś już dawno postanowił go odnaleźć.</em></p>
+
+<p><em>Ktoś, kto nie zapomniał o tym, co wydarzyło się w przeszłości.</em></p>
+
+<p><em>Ktoś, dla kogo milczenie Hinako było czymś znacznie gorszym niż zwykła obojętność.</em></p>
+
+<p><em>Wiedział również, że człowiek, który mógł pomóc Renowi, nie zrobił niczego.</em></p>
+
+<p><em>A teraz nadszedł czas, aby odpowiedział za swoje milczenie.</em></p>
+
+<br>
+
+<h2>Historia Hinako dobiegła końca.</h2>
+
+<p style="text-align: center; margin-top: 45px;">
+<em>Historia Rena dopiero się zaczyna.......</em>
+</p>
+
+<div class="chapter-controls">
+    <button onclick="changeFont(-1)">A−</button>
+    <button onclick="changeFont(1)">A+</button>
+    <button onclick="changeSpacing(-0.1)">Odstępy −</button>
+    <button onclick="changeSpacing(0.1)">Odstępy +</button>
+</div>
+
+<nav class="navigation">
+    <a href="hinako-rozdzial9.html">← Poprzedni rozdział</a>
+    <a href="hinako.html">Spis treści</a>
+    <a href="hinako.html">Powrót do początku ↑</a>
+</nav>
+
+</main>
+
+<footer>
+N. TSUKISHIRO · HINAKO
+</footer>
+
+<button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+↑
+</button>
+
+<script>
+const progress = document.getElementById("reading-progress");
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const percentage = scrollable > 0
+        ? (window.scrollY / scrollable) * 100
+        : 0;
+
+    progress.style.width = percentage + "%";
+    backToTop.style.display = window.scrollY > 400 ? "block" : "none";
+});
+
+let fontSize = 19;
+let lineSpacing = 1.9;
+
+function changeFont(amount) {
+    fontSize = Math.max(14, Math.min(28, fontSize + amount));
+    document.querySelector(".prologue-page").style.fontSize = fontSize + "px";
+}
+
+function changeSpacing(amount) {
+    lineSpacing = Math.max(1.3, Math.min(2.5, lineSpacing + amount));
+    document.querySelector(".prologue-page").style.lineHeight = lineSpacing;
+}
+</script>
+
+</body>
+</html>
