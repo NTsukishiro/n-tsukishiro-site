@@ -2,122 +2,318 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nieobecni | Hinako - N. Tsukishiro</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VII. NIEOBECNI | N. Tsukishiro</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #e5e5e5;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: #e5e5e5;
+    z-index: 1000;
+}
+
+.chapter-header {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 8%;
+    overflow: hidden;
+}
+
+.chapter-header h1 {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    font-size: clamp(2.2rem, 8vw, 5rem);
+    letter-spacing: clamp(3px, 1.2vw, 12px);
+    font-weight: normal;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+}
+
+.author {
+    margin-top: 35px;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: #777;
+}
+
+.subtitle {
+    margin-top: 22px;
+    color: #777;
+    font-size: 15px;
+    font-style: italic;
+}
+
+.prologue-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 12%;
+    font-size: 19px;
+    line-height: 1.9;
+}
+
+.prologue-page h2 {
+    text-align: center;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: normal;
+    letter-spacing: 4px;
+    margin-bottom: 65px;
+}
+
+.publication-date {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 65px;
+}
+
+.story p {
+    margin: 0 0 28px;
+}
+
+.story em {
+    font-style: italic;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 70px 0 50px;
+}
+
+.controls button,
+.navigation a,
+#backToTop {
+    background: transparent;
+    border: 1px solid #444;
+    color: #aaa;
+    padding: 10px 16px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.controls button:hover,
+.navigation a:hover,
+#backToTop:hover {
+    color: #fff;
+    border-color: #aaa;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 80px;
+    padding-top: 30px;
+    border-top: 1px solid #222;
+}
+
+footer {
+    text-align: center;
+    padding: 50px 20px;
+    color: #555;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+#backToTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    display: none;
+    z-index: 100;
+    background: #000;
+}
+
+@media (max-width: 600px) {
+    .chapter-header {
+        padding: 35px 7%;
+    }
+
+    .prologue-page {
+        padding: 75px 8%;
+        font-size: 18px;
+        line-height: 1.85;
+    }
+
+    .prologue-page h2 {
+        letter-spacing: 2px;
+        margin-bottom: 45px;
+    }
+
+    .publication-date {
+        margin-bottom: 45px;
+    }
+
+    .navigation {
+        justify-content: center;
+    }
+
+    .navigation a {
+        text-align: center;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <header class="site-header">
-        <a href="index.html" class="site-logo">N. TSUKISHIRO</a>
+<div id="reading-progress"></div>
 
-        <nav class="site-nav">
-            <a href="index.html">Strona główna</a>
-            <a href="index.html#powiesci">Powieści</a>
-            <a href="index.html#autor">O autorze</a>
-            <a href="index.html#kontakt">Kontakt</a>
-        </nav>
-    </header>
+<header class="chapter-header">
+    <h1>VII. NIEOBECNI</h1>
+    <div class="author">N. TSUKISHIRO</div>
+    <div class="subtitle">Prefektura Gunma, dwa lata przed wydarzeniami z „Szczura”.</div>
+</header>
 
-    <main>
-        <section class="book-page-hero">
-            <p class="eyebrow">HINAKO</p>
-            <h1>NIEOBECNI</h1>
-            <p class="book-subtitle">Tam, gdzie kończy się pamięć</p>
-            <p class="chapter-number">ROZDZIAŁ VII</p>
-        </section>
+<main class="prologue-page">
 
-        <section class="section-wrap chapter-list">
-            <article class="chapter-content">
+    <h2>NIEOBECNI</h2>
 
-                <p>Kolejne dni przynosiły coraz więcej pytań.</p>
+    <div class="publication-date">
+        HINAKO · ROZDZIAŁ VII
+    </div>
 
-                <p>Hinako zaczął mieć trudności z uporządkowaniem informacji, które wcześniej zebrał.</p>
+    <article class="story" id="story">
 
-                <p>Niektóre rozmowy pamiętał inaczej, niż opisywał je w swoim notesie. Kilka razy zdarzyło mu się odnaleźć zapiski, których nie przypominał sobie sporządzać.</p>
+        <p><em>Kolejne dni przynosiły coraz więcej pytań.</em></p>
 
-                <p>Nie potrafił jednak stwierdzić, czy rzeczywiście ich nie napisał, czy po prostu zapomniał.</p>
+        <p><em>Hinako zaczął mieć trudności z uporządkowaniem informacji, które wcześniej zebrał.</em></p>
 
-                <p>Miejscowość zaczęła wydawać mu się coraz bardziej obca.</p>
+        <p><em>Niektóre rozmowy pamiętał inaczej, niż opisywał je w swoim notesie. Kilka razy zdarzyło mu się odnaleźć zapiski, których nie przypominał sobie sporządzać.</em></p>
 
-                <p>Pewnego dnia postanowił ponownie odnaleźć drogę, którą przybył.</p>
+        <p><em>Nie potrafił jednak stwierdzić, czy rzeczywiście ich nie napisał, czy po prostu zapomniał.</em></p>
 
-                <p>Nie udało mu się.</p>
+        <p><em>Miejscowość zaczęła wydawać mu się coraz bardziej obca.</em></p>
 
-                <p>Ścieżka prowadząca do lasu wyglądała inaczej, niż ją zapamiętał. Nie był pewien, czy skręcił w odpowiednim miejscu.</p>
+        <p><em>Pewnego dnia postanowił ponownie odnaleźć drogę, którą przybył.</em></p>
 
-                <p>Kiedy wrócił do centrum osady, zapytał jednego z mieszkańców o drogę.</p>
+        <p><em>Nie udało mu się.</em></p>
 
-                <p>Mężczyzna spojrzał na niego ze zdziwieniem.</p>
+        <p><em>Ścieżka prowadząca do lasu wyglądała inaczej, niż ją zapamiętał. Nie był pewien, czy skręcił w odpowiednim miejscu.</em></p>
 
-                <p>Powiedział, że nie powinien się tym martwić.</p>
+        <p><em>Kiedy wrócił do centrum osady, zapytał jednego z mieszkańców o drogę.</em></p>
 
-                <p>Hinako zapytał dlaczego.</p>
+        <p><em>Mężczyzna spojrzał na niego ze zdziwieniem.</em></p>
 
-                <p>Nie otrzymał odpowiedzi.</p>
+        <p><em>Powiedział, że nie powinien się tym martwić.</em></p>
 
-                <p>W nocy zaczął mieć problemy ze snem.</p>
+        <p><em>Hinako zapytał dlaczego.</em></p>
 
-                <p>Wydawało mu się, że słyszy rozmowy dochodzące z sąsiednich pomieszczeń, choć nie potrafił rozpoznać żadnych słów.</p>
+        <p><em>Nie otrzymał odpowiedzi.</em></p>
 
-                <p>Kilka razy budził się z przekonaniem, że ktoś stał niedaleko jego miejsca odpoczynku.</p>
+        <p><em>W nocy zaczął mieć problemy ze snem.</em></p>
 
-                <p>Nie potrafił jednak znaleźć żadnego potwierdzenia.</p>
+        <p><em>Wydawało mu się, że słyszy rozmowy dochodzące z sąsiednich pomieszczeń, choć nie potrafił rozpoznać żadnych słów.</em></p>
 
-                <p>Zaczął również unikać niektórych mieszkańców.</p>
+        <p><em>Kilka razy budził się z przekonaniem, że ktoś stał niedaleko jego miejsca odpoczynku.</em></p>
 
-                <p>Nie wiedział, czy rzeczywiście zachowywali się wobec niego dziwnie, czy po prostu coraz trudniej było mu ufać własnym osądom.</p>
+        <p><em>Nie potrafił jednak znaleźć żadnego potwierdzenia.</em></p>
 
-                <p>Pewnego wieczoru ponownie odwiedził kapliczkę.</p>
+        <p><em>Zaczął również unikać niektórych mieszkańców.</em></p>
 
-                <p>Zatrzymał się przed wejściem.</p>
+        <p><em>Nie wiedział, czy rzeczywiście zachowywali się wobec niego dziwnie, czy po prostu coraz trudniej było mu ufać własnym osądom.</em></p>
 
-                <p>Przez chwilę miał wrażenie, że słyszy głos ojca.</p>
+        <p><em>Pewnego wieczoru ponownie odwiedził kapliczkę.</em></p>
 
-                <p>Nie rozpoznał wypowiadanych słów.</p>
+        <p><em>Zatrzymał się przed wejściem.</em></p>
 
-                <p>Kiedy wszedł do środka, nikogo tam nie było.</p>
+        <p><em>Przez chwilę miał wrażenie, że słyszy głos ojca.</em></p>
 
-                <p>Stał przez chwilę w ciszy.</p>
+        <p><em>Nie rozpoznał wypowiadanych słów.</em></p>
 
-                <p>Następnie opuścił kapliczkę.</p>
+        <p><em>Kiedy wszedł do środka, nikogo tam nie było.</em></p>
 
-                <p>Nie wspomniał nikomu o tym wydarzeniu.</p>
+        <p><em>Stał przez chwilę w ciszy.</em></p>
 
-            </article>
+        <p><em>Następnie opuścił kapliczkę.</em></p>
 
-            <div class="chapter-navigation">
-                <a href="hinako-rozdzial6.html">← Poprzedni rozdział</a>
-                <a href="hinako-rozdzial8.html">Następny rozdział →</a>
-            </div>
-        </section>
+        <p><em>Nie wspomniał nikomu o tym wydarzeniu.</em></p>
 
-        <section class="section-wrap comments-section">
-            <h2>Komentarze</h2>
+    </article>
 
-            <script src="https://giscus.app/client.js"
-                data-repo="NTsukishiro/n-tsukishiro-site"
-                data-repo-id="R_kgDOV5ZR5g"
-                data-category="General"
-                data-category-id="DIC_kwDOV5ZR5s4DL1EZ"
-                data-mapping="pathname"
-                data-strict="0"
-                data-reactions-enabled="1"
-                data-emit-metadata="0"
-                data-input-position="bottom"
-                data-theme="purple_dark"
-                data-lang="pl"
-                crossorigin="anonymous"
-                async>
-            </script>
-        </section>
-    </main>
+    <div class="controls">
+        <button onclick="changeFont(-1)">A−</button>
+        <button onclick="changeFont(1)">A+</button>
+        <button onclick="changeSpacing(-0.1)">Odstępy −</button>
+        <button onclick="changeSpacing(0.1)">Odstępy +</button>
+    </div>
 
-    <footer class="site-footer">
-        <p>© N. Tsukishiro</p>
-    </footer>
+    <nav class="navigation">
+        <a href="hinako-rozdzial6.html">← Poprzedni rozdział</a>
+        <a href="hinako.html">Spis treści</a>
+        <a href="hinako-rozdzial8.html">Następny rozdział →</a>
+    </nav>
+
+</main>
+
+<footer>
+    N. TSUKISHIRO · HINAKO
+</footer>
+
+<button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    ↑
+</button>
+
+<script>
+const progress = document.getElementById("reading-progress");
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percentage = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+    progress.style.width = percentage + "%";
+    backToTop.style.display = scrollTop > 400 ? "block" : "none";
+});
+
+let fontSize = 19;
+let lineSpacing = 1.9;
+
+function changeFont(amount) {
+    fontSize = Math.min(26, Math.max(14, fontSize + amount));
+    document.querySelector(".story").style.fontSize = fontSize + "px";
+}
+
+function changeSpacing(amount) {
+    lineSpacing = Math.min(2.5, Math.max(1.3, lineSpacing + amount));
+    document.querySelector(".story").style.lineHeight = lineSpacing;
+}
+</script>
 
 </body>
 </html>
