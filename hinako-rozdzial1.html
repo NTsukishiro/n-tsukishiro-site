@@ -2,140 +2,493 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dziedzictwo | Hinako</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+
+<title>I. DZIEDZICTWO | N. Tsukishiro</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #e5e5e5;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+/* PASEK POSTĘPU */
+
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #e5e5e5;
+    z-index: 9999;
+}
+
+/* NAGŁÓWEK ROZDZIAŁU */
+
+.chapter-header {
+    min-height: 100vh;
+    min-height: 100svh;
+    width: 100%;
+    padding: 80px 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #000;
+    overflow: hidden;
+}
+
+.author {
+    color: #555;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.chapter-header h1 {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(25px, 6vw, 48px);
+    font-weight: normal;
+    letter-spacing: clamp(2px, 1.2vw, 10px);
+    line-height: 1.2;
+    color: #eee;
+    animation: appear 2s ease;
+    margin: 0;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    text-wrap: balance;
+}
+
+.subtitle {
+    margin-top: 30px;
+    color: #777;
+    font-size: clamp(14px, 2.5vw, 16px);
+    font-style: italic;
+    max-width: 100%;
+    line-height: 1.6;
+}
+
+/* TREŚĆ ROZDZIAŁU */
+
+.prologue-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 100px 12%;
+    gap: 28px;
+    line-height: 1.9;
+    font-size: 19px;
+    background: #000;
+}
+
+.prologue-page h2 {
+    text-align: center;
+    font-size: clamp(20px, 4vw, 30px);
+    letter-spacing: clamp(2px, 1vw, 8px);
+    font-weight: normal;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    margin: 0 0 30px;
+}
+
+.publication-date {
+    text-align: center;
+    color: #555;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 2px;
+    line-height: 1.7;
+    margin-top: -10px;
+    margin-bottom: 35px;
+}
+
+.prologue-page p {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.story .center {
+    text-align: center;
+}
+
+.story .dialogue {
+    font-style: italic;
+    margin: 0;
+}
+
+.story .scene-break {
+    text-align: center;
+    color: #999;
+    letter-spacing: 5px;
+    margin: 30px 0;
+}
+
+.story .section-end {
+    text-align: center;
+    margin-top: 60px;
+    letter-spacing: 2px;
+}
+
+.story .no-indent {
+    text-indent: 0;
+}
+
+/* ANIMACJE */
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* PRZYCISKI CZYTANIA */
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 45px 15px;
+    font-family: Arial, sans-serif;
+    background: #000;
+}
+
+button {
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #333;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    color: white;
+    border-color: #aaa;
+}
+
+/* NAWIGACJA */
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 25px 12%;
+    border-top: 1px solid #292929;
+    font-family: Arial, sans-serif;
+}
+
+.navigation a {
+    color: #999;
+    text-decoration: none;
+    font-size: 12px;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.navigation a:hover {
+    color: white;
+}
+
+/* STOPKA */
+
+footer {
+    text-align: center;
+    padding: 40px 15px;
+    color: #444;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 3px;
+}
+
+/* POWRÓT NA GÓRĘ */
+
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #333;
+    background: #080808;
+    color: #aaa;
+    font-size: 20px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+    transition: 0.3s;
+}
+
+#backToTop.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#backToTop:hover {
+    color: white;
+    border-color: #aaa;
+    background: #151515;
+}
+
+/* TELEFONY */
+
+@media (max-width: 600px) {
+    .chapter-header {
+        padding: 70px 7%;
+    }
+
+    .chapter-header h1 {
+        font-size: clamp(23px, 8vw, 38px);
+        letter-spacing: clamp(1px, 1.5vw, 6px);
+    }
+
+    .prologue-page {
+        font-size: 18px;
+        line-height: 1.85;
+        padding: 75px 8%;
+    }
+
+    .navigation {
+        padding: 25px 8%;
+        flex-direction: column;
+    }
+
+    .navigation a {
+        text-align: center;
+    }
+
+    #backToTop {
+        right: 16px;
+        bottom: 16px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-  <header class="site-header">
-    <a class="site-logo" href="index.html">N. TSUKISHIRO</a>
+<div id="reading-progress"></div>
 
-    <nav class="site-nav">
-      <a href="index.html">Strona główna</a>
-      <a href="powiesci.html">Powieści</a>
-      <a href="o-autorze.html">O autorze</a>
-      <a href="aktualnosci.html">Aktualności</a>
-      <a href="kontakt.html">Kontakt</a>
-    </nav>
-  </header>
+<main>
 
-  <main>
+<!-- TYTUŁ ROZDZIAŁU -->
 
-    <section class="book-page-hero">
-      <p class="eyebrow">HINAKO</p>
-      <h1>DZIEDZICTWO</h1>
-      <p class="book-subtitle">Tam, gdzie kończy się pamięć</p>
-      <p class="chapter-number">ROZDZIAŁ I</p>
-    </section>
+<section class="chapter-header">
 
-    <section class="section-wrap chapter-list">
+    <div class="author">N. TSUKISHIRO</div>
 
-      <article class="chapter-content">
+    <h1>I. DZIEDZICTWO</h1>
 
-        <p>Hinako wychowywał się w rodzinie duchownych.</p>
+    <div class="subtitle">
+        Prefektura Gunma, dwa lata przed wydarzeniami z „Szczura”.
+    </div>
 
-        <p>Jego codzienność polegała na ciągłym chodzeniu do kapliczki i obserwowaniu rytuałów odprawianych przez ojca. Kapliczka znajdowała się poza granicami prefektury Gunma, około pół godziny drogi od rodzinnego domu Hinako. Nie była szczególnie duża ani znana wśród mieszkańców okolicznych miejscowości. Mimo to stanowiła ważną część ich życia.</p>
+</section>
 
-        <p>Otaczał ją niewielki las, którego drzewa przez większą część roku zasłaniały konstrukcję przed wzrokiem przejeżdżających drogą ludzi. Prowadziła do niej wąska ścieżka, wyłożona miejscami nierównymi kamieniami. Po obu jej stronach rosły wysokie trawy i niewielkie krzewy, które z czasem zaczęły przejmować coraz większą część przejścia. W pobliżu nie znajdowały się żadne większe zabudowania, dlatego panująca tam cisza często sprawiała wrażenie niemal całkowitego odcięcia od reszty świata.</p>
+<!-- TREŚĆ ROZDZIAŁU -->
 
-        <p>Sama kapliczka była wykonana z ciemnego drewna. Jej dach nosił ślady wieloletniego użytkowania, a niektóre elementy konstrukcji wymagały regularnej konserwacji. Przed wejściem znajdowało się kilka kamiennych stopni oraz niewielkie miejsce przeznaczone do pozostawiania ofiar. Wszystko miało swoje określone położenie, a ojciec Hinako pilnował, aby żaden z przedmiotów nie znajdował się w niewłaściwym miejscu.</p>
+<section class="book-page prologue-page" id="rozdzial">
 
-        <p>Hinako często towarzyszył ojcu podczas przygotowań do obrzędów. Przyglądał się jego ruchom, obserwował przedmioty, których używał, i próbował zapamiętać wypowiadane przez niego słowa.</p>
+    <h2>DZIEDZICTWO</h2>
 
-        <p>Nie rozumiał jednak, do czego miało mu się to przydać.</p>
+    <div class="publication-date">
+        HINAKO · ROZDZIAŁ I
+    </div>
 
-        <p>Czasami zadawał pytania, na które ojciec nie zawsze chciał odpowiadać. Zazwyczaj słyszał, że niektóre rzeczy wymagają cierpliwości, a ich znaczenie przychodzi dopiero z czasem.</p>
+    <article class="story">
 
-        <p>Mężczyzna zajmował się rytuałami od wielu lat. Wykonywał je z niezwykłą dokładnością, nie pomijając żadnego z wcześniej ustalonych elementów. Niektóre czynności powtarzał kilkukrotnie, inne wykonywał wyłącznie o określonych porach.</p>
+<p><em>Hinako wychowywał się w rodzinie duchownych.</em></p>
 
-        <p>Hinako nie wiedział, dlaczego tak było.</p>
+<p><em>Jego codzienność polegała na ciągłym chodzeniu do kapliczki i obserwowaniu rytuałów odprawianych przez ojca. Kapliczka znajdowała się poza granicami prefektury Gunma, około pół godziny drogi od rodzinnego domu Hinako. Nie była szczególnie duża ani znana wśród mieszkańców okolicznych miejscowości. Mimo to stanowiła ważną część ich życia.</em></p>
 
-        <p>Pewnego razu zapytał ojca, czy wszystkie te obrzędy rzeczywiście mają jakiekolwiek znaczenie.</p>
+<p><em>Otaczał ją niewielki las, którego drzewa przez większą część roku zasłaniały konstrukcję przed wzrokiem przejeżdżających drogą ludzi. Prowadziła do niej wąska ścieżka, wyłożona miejscami nierównymi kamieniami. Po obu jej stronach rosły wysokie trawy i niewielkie krzewy, które z czasem zaczęły przejmować coraz większą część przejścia. W pobliżu nie znajdowały się żadne większe zabudowania, dlatego panująca tam cisza często sprawiała wrażenie niemal całkowitego odcięcia od reszty świata.</em></p>
 
-        <p>Mężczyzna przez chwilę milczał.</p>
+<p><em>Sama kapliczka była wykonana z ciemnego drewna. Jej dach nosił ślady wieloletniego użytkowania, a niektóre elementy konstrukcji wymagały regularnej konserwacji. Przed wejściem znajdowało się kilka kamiennych stopni oraz niewielkie miejsce przeznaczone do pozostawiania ofiar. Wszystko miało swoje określone położenie, a ojciec Hinako pilnował, aby żaden z przedmiotów nie znajdował się w niewłaściwym miejscu.</em></p>
 
-        <p>Następnie odpowiedział, że nie wszystko, czego nie potrafimy zobaczyć, przestaje istnieć.</p>
+<p><em>Hinako często towarzyszył ojcu podczas przygotowań do obrzędów. Przyglądał się jego ruchom, obserwował przedmioty, których używał, i próbował zapamiętać wypowiadane przez niego słowa.</em></p>
 
-        <p>Chłopiec nie zrozumiał jego słów.</p>
+<p><em>Nie rozumiał jednak, do czego miało mu się to przydać.</em></p>
 
-        <p>Nie zdążył również zapytać o nie ponownie.</p>
+<p><em>Czasami zadawał pytania, na które ojciec nie zawsze chciał odpowiadać. Zazwyczaj słyszał, że niektóre rzeczy wymagają cierpliwości, a ich znaczenie przychodzi dopiero z czasem.</em></p>
 
-        <p>Jego ojciec zmarł, gdy Hinako był jeszcze dzieckiem.</p>
+<p><em>Mężczyzna zajmował się rytuałami od wielu lat. Wykonywał je z niezwykłą dokładnością, nie pomijając żadnego z wcześniej ustalonych elementów. Niektóre czynności powtarzał kilkukrotnie, inne wykonywał wyłącznie o określonych porach.</em></p>
 
-        <p>Od tamtej pory obowiązki związane z kapliczką przejęła matka. Niektóre rytuały kontynuowała, inne wykonywała w odmienny sposób. Były również takie, o których przestała wspominać.</p>
+<p><em>Hinako nie wiedział, dlaczego tak było.</em></p>
 
-        <p>Hinako nie zadawał zbyt wielu pytań. Wiedział, że matka niechętnie rozmawia o swoim zmarłym mężu.</p>
+<p><em>Pewnego razu zapytał ojca, czy wszystkie te obrzędy rzeczywiście mają jakiekolwiek znaczenie.</em></p>
 
-        <p>Mimo upływu lat pamiętał jednak jego nauki.</p>
+<p><em>Mężczyzna przez chwilę milczał.</em></p>
 
-        <p>Wciąż potrafił odtworzyć w pamięci kolejność niektórych czynności, charakterystyczny taniec. Pamiętał przedmioty wykorzystywane podczas obrzędów i sposób, w jaki ojciec przygotowywał kapliczkę przed ich rozpoczęciem.</p>
+<p><em>Następnie odpowiedział, że nie wszystko, czego nie potrafimy zobaczyć, przestaje istnieć.</em></p>
 
-        <p>Czasami wracał tam sam.</p>
+<p><em>Chłopiec nie zrozumiał jego słów.</em></p>
 
-        <p>Starał się odtworzyć każdy szczegół rytuału wykonywanego przez jego ojca. Jednak nic się nie działo. Nie wiedział, czy robił to z przyzwyczajenia, czy dlatego, że nie chciał całkowicie zapomnieć o człowieku, którego straciił.</p>
+<p><em>Nie zdążył również zapytać o nie ponownie.</em></p>
 
-        <p>Lata mijały.</p>
+<p><em>Jego ojciec zmarł, gdy Hinako był jeszcze dzieckiem.</em></p>
 
-        <p>Hinako dorastał, a kapliczka stopniowo przestawała zajmować tak ważne miejsce w jego codzienności.</p>
+<p><em>Od tamtej pory obowiązki związane z kapliczką przejęła matka. Niektóre rytuały kontynuowała, inne wykonywała w odmienny sposób. Były również takie, o których przestała wspominać.</em></p>
 
-        <p>Szkoła, znajomi i inne obowiązki pochłaniały coraz więcej czasu.</p>
+<p><em>Hinako nie zadawał zbyt wielu pytań. Wiedział, że matka niechętnie rozmawia o swoim zmarłym mężu.</em></p>
 
-        <p>Jeszcze w szkole podstawowej poznał Rena. Od tamtej pory pozostawali nierozłączni, a ich przyjaźń przetrwała kolejne lata.</p>
+<p><em>Mimo upływu lat pamiętał jednak jego nauki.</em></p>
 
-        <p>Przyjaźń z Renem nie sprawiła jednak, że stracił zainteresowanie dawnymi wierzeniami.</p>
+<p><em>Wciąż potrafił odtworzyć w pamięci kolejność niektórych czynności, charakterystyczny taniec. Pamiętał przedmioty wykorzystywane podczas obrzędów i sposób, w jaki ojciec przygotowywał kapliczkę przed ich rozpoczęciem.</em></p>
 
-        <p>Wręcz przeciwnie.</p>
+<p><em>Czasami wracał tam sam.</em></p>
 
-        <p>Z czasem zaczął samodzielnie poszukiwać informacji dotyczących lokalnych obrzędów, zapomnianych historii i opowieści przekazywanych przez starszych mieszkańców.</p>
+<p><em>Starał się odtworzyć każdy szczegół rytuału wykonywanego przez jego ojca. Jednak nic się nie działo. Nie wiedział, czy robił to z przyzwyczajenia, czy dlatego, że nie chciał całkowicie zapomnieć o człowieku, którego straciił.</em></p>
 
-        <p>Nie wszystkie traktował poważnie.</p>
+<p><em>Lata mijały.</em></p>
 
-        <p>Niektóre wydawały mu się zwykłymi przesądami. Inne były na tyle osobliwe, że trudno było mu przejść obok nich obojętnie.</p>
+<p><em>Hinako dorastał, a kapliczka stopniowo przestawała zajmować tak ważne miejsce w jego codzienności.</em></p>
 
-        <p>Po ukończeniu liceum zyskał znacznie więcej swobody.</p>
+<p><em>Szkoła, znajomi i inne obowiązki pochłaniały coraz więcej czasu.</em></p>
 
-        <p>Nie musiał już podporządkowywać całego dnia szkolnym obowiązkom, dlatego coraz częściej podróżował po prefekturze Gunma.</p>
+<p><em>Jeszcze w szkole podstawowej poznał Rena. Od tamtej pory pozostawali nierozłączni, a ich przyjaźń przetrwała kolejne lata.</em></p>
 
-        <p>Nie wiedział jeszcze, że jedna z tych podróży sprawi, że zacznie kwestionować niemal wszystko, czego nauczył się przez całe życie.</p>
+<p><em>Przyjaźń z Renem nie sprawiła jednak, że stracił zainteresowanie dawnymi wierzeniami.</em></p>
 
-      </article>
+<p><em>Wręcz przeciwnie.</em></p>
 
-      <div class="chapter-navigation">
-        <a href="hinako.html">← Spis rozdziałów</a>
-        <a href="hinako-rozdzial2.html">Następny rozdział →</a>
-      </div>
+<p><em>Z czasem zaczął samodzielnie poszukiwać informacji dotyczących lokalnych obrzędów, zapomnianych historii i opowieści przekazywanych przez starszych mieszkańców.</em></p>
 
-    </section>
+<p><em>Nie wszystkie traktował poważnie.</em></p>
 
-    <section class="section-wrap comments-section">
-      <h2>KOMENTARZE</h2>
+<p><em>Niektóre wydawały mu się zwykłymi przesądami. Inne były na tyle osobliwe, że trudno było mu przejść obok nich obojętnie.</em></p>
 
-      <script src="https://giscus.app/client.js"
-        data-repo="NTsukishiro/n-tsukishiro-site"
-        data-repo-id="R_kgDOV5ZR5g"
-        data-category="General"
-        data-category-id="DIC_kwDOV5ZR5s4DL1EZ"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="purple_dark"
-        data-lang="pl"
-        crossorigin="anonymous"
-        async>
-      </script>
-    </section>
+<p><em>Po ukończeniu liceum zyskał znacznie więcej swobody.</em></p>
 
-  </main>
+<p><em>Nie musiał już podporządkowywać całego dnia szkolnym obowiązkom, dlatego coraz częściej podróżował po prefekturze Gunma.</em></p>
 
-  <footer class="site-footer">
-    <p>© N. TSUKISHIRO</p>
-  </footer>
+<p><em>Nie wiedział jeszcze, że jedna z tych podróży sprawi, że zacznie kwestionować niemal wszystko, czego nauczył się przez całe życie.</em></p>
+
+    </article>
+
+</section>
+
+</main>
+
+<!-- PRZYCISKI CZYTANIA -->
+
+<div class="controls">
+
+    <button onclick="changeFont(-1)">A−</button>
+
+    <button onclick="changeFont(1)">A+</button>
+
+    <button onclick="changeSpacing(-0.1)">Odstępy −</button>
+
+    <button onclick="changeSpacing(0.1)">Odstępy +</button>
+
+</div>
+
+<!-- NAWIGACJA -->
+
+<nav class="navigation">
+
+    <a href="hinako.html">← POWRÓT DO SPISU TREŚCI</a>
+
+    <a href="hinako.html">SPIS TREŚCI</a>
+
+    <a href="hinako-rozdzial2.html">NASTĘPNY ROZDZIAŁ →</a>
+
+</nav>
+
+<footer>
+    N. TSUKISHIRO · HINAKO
+</footer>
+
+<button id="backToTop" aria-label="Wróć na górę">↑</button>
+
+<script>
+
+/* ZMIANA WIELKOŚCI TEKSTU */
+
+let fontSize = 19;
+let lineHeight = 1.9;
+
+const chapter = document.querySelector(".prologue-page");
+
+function changeFont(value) {
+
+    fontSize += value;
+
+    if (fontSize < 14) fontSize = 14;
+    if (fontSize > 28) fontSize = 28;
+
+    chapter.style.fontSize = fontSize + "px";
+
+}
+
+function changeSpacing(value) {
+
+    lineHeight += value;
+
+    if (lineHeight < 1.4) lineHeight = 1.4;
+    if (lineHeight > 2.5) lineHeight = 2.5;
+
+    chapter.style.lineHeight = lineHeight;
+
+}
+
+/* PASEK POSTĘPU */
+
+const progressBar = document.getElementById("reading-progress");
+
+/* POWRÓT NA GÓRĘ */
+
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+
+    const scrollable =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+    const progress = scrollable > 0
+        ? (window.scrollY / scrollable) * 100
+        : 0;
+
+    progressBar.style.width = progress + "%";
+
+    if (window.scrollY > 400) {
+        backToTop.classList.add("visible");
+    } else {
+        backToTop.classList.remove("visible");
+    }
+
+});
+
+backToTop.addEventListener("click", () => {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+</script>
 
 </body>
 </html>
