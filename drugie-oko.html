@@ -1,0 +1,763 @@
+
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta name="description" content="DRUGIE OKO — nowela N. Tsukishiro inspirowana tradycją Takasaki Daruma.">
+  <title>DRUGIE OKO | N. Tsukishiro</title>
+
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: #0b0b0c;
+      color: #e9e7e2;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 20;
+      width: 100%;
+      height: 3px;
+      background: #242426;
+    }
+
+    .reading-progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: #b8a98b;
+      transition: width .1s linear;
+    }
+
+    .chapter-header {
+      min-height: 100vh;
+      padding: 42px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 1px solid #29292b;
+      position: relative;
+    }
+
+    .author-mark {
+      color: #a99b80;
+      font: 11px/1.5 Arial, sans-serif;
+      letter-spacing: .32em;
+      margin-bottom: 70px;
+    }
+
+    .chapter-header h1 {
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(2.3rem, 7vw, 5.5rem);
+      line-height: 1.12;
+      font-weight: 400;
+      letter-spacing: .045em;
+    }
+
+    .chapter-subtitle {
+      margin-top: 24px;
+      color: #9b9993;
+      font: 11px/1.7 Arial, sans-serif;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+    }
+
+    .header-bottom {
+      position: absolute;
+      bottom: 30px;
+      left: 7%;
+      right: 7%;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: #777571;
+      font: 9px Arial, sans-serif;
+      letter-spacing: .2em;
+    }
+
+    .reader-tools {
+      position: sticky;
+      top: 3px;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      padding: 13px 16px;
+      background: rgba(11,11,12,.96);
+      border-bottom: 1px solid #29292b;
+      backdrop-filter: blur(10px);
+    }
+
+    .reader-tools button {
+      border: 1px solid #414044;
+      background: transparent;
+      color: #d8d5ce;
+      padding: 8px 12px;
+      font: 10px Arial, sans-serif;
+      letter-spacing: .08em;
+      cursor: pointer;
+    }
+
+    .reader-tools button:hover {
+      border-color: #b8a98b;
+      color: #fff;
+    }
+
+    .reader-tools .tool-label {
+      color: #85827c;
+      font: 9px Arial, sans-serif;
+      letter-spacing: .12em;
+      margin-left: 5px;
+    }
+
+    .prologue-page {
+      width: min(100% - 42px, 720px);
+      margin: 0 auto;
+      padding: 82px 0 110px;
+    }
+
+    .story-heading {
+      text-align: center;
+      margin-bottom: 66px;
+    }
+
+    .story-heading .eyebrow {
+      color: #a99b80;
+      font: 10px Arial, sans-serif;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+    }
+
+    .story-heading h2 {
+      margin: 18px 0 12px;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 400;
+      letter-spacing: .035em;
+    }
+
+    .story-heading time {
+      color: #777571;
+      font: 10px Arial, sans-serif;
+      letter-spacing: .15em;
+    }
+
+    .story-text {
+      font-size: 18px;
+      line-height: 1.9;
+      color: #d5d2cb;
+      white-space: normal;
+    }
+
+    .story-text p {
+      margin: 0 0 1.55em;
+    }
+
+    .story-text p.scene-break {
+      text-align: center;
+      color: #8d887e;
+      letter-spacing: .45em;
+      margin: 2.7em 0;
+    }
+
+    .story-text p.dialogue {
+    }
+
+    .page-navigation {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 90px;
+      padding-top: 24px;
+      border-top: 1px solid #29292b;
+    }
+
+    .page-navigation a {
+      color: #b8a98b;
+      text-decoration: none;
+      font: 10px Arial, sans-serif;
+      letter-spacing: .13em;
+    }
+
+    .page-navigation a:hover {
+      color: #fff;
+    }
+
+    .comments-area {
+      width: min(100% - 42px, 900px);
+      margin: 0 auto 100px;
+      padding: 34px 0 0;
+      border-top: 1px solid #29292b;
+    }
+
+    .comments-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .comments-heading .eyebrow {
+      color: #a99b80;
+      font: 10px Arial, sans-serif;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+    }
+
+    .comments-heading h2 {
+      margin: 0;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      font-weight: 400;
+    }
+
+    .comments-heading h2 span {
+      color: #b8a98b;
+    }
+
+    .comments-index {
+      color: #777571;
+      font: 9px Arial, sans-serif;
+      letter-spacing: .18em;
+      white-space: nowrap;
+    }
+
+    .giscus,
+    .giscus-frame {
+      width: 100%;
+    }
+
+    .site-footer {
+      padding: 26px 7%;
+      border-top: 1px solid #29292b;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: #777571;
+      font: 9px Arial, sans-serif;
+      letter-spacing: .16em;
+    }
+
+    .site-footer a {
+      color: #aaa69d;
+      text-decoration: none;
+    }
+
+    .back-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 8;
+      display: none;
+      border: 1px solid #49464a;
+      background: #111113;
+      color: #ddd8ce;
+      padding: 11px 13px;
+      cursor: pointer;
+      font: 9px Arial, sans-serif;
+      letter-spacing: .1em;
+    }
+
+    .back-top.visible {
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .chapter-header {
+        min-height: 88vh;
+      }
+
+      .author-mark {
+        margin-bottom: 48px;
+      }
+
+      .header-bottom {
+        left: 22px;
+        right: 22px;
+        font-size: 8px;
+      }
+
+      .prologue-page {
+        width: min(100% - 38px, 720px);
+        padding-top: 58px;
+      }
+
+      .story-text {
+        font-size: 17px;
+        line-height: 1.85;
+      }
+
+      .reader-tools {
+        gap: 6px;
+      }
+
+      .reader-tools button {
+        padding: 8px 9px;
+      }
+
+      .site-footer {
+        flex-wrap: wrap;
+      }
+
+      .comments-area {
+        width: min(100% - 38px, 900px);
+      }
+
+      .comments-heading {
+        align-items: start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="reading-progress" aria-hidden="true">
+    <span id="progressBar"></span>
+  </div>
+
+  <header class="chapter-header" id="top">
+    <div class="author-mark">N. TSUKISHIRO</div>
+
+    <h1>DRUGIE OKO</h1>
+
+    <p class="chapter-subtitle">
+      Nowela inspirowana tradycją Takasaki Daruma
+    </p>
+
+    <div class="header-bottom">
+      <span>HORROR PSYCHOLOGICZNY</span>
+      <span>N. TSUKISHIRO · 2026</span>
+    </div>
+  </header>
+
+  <div class="reader-tools" aria-label="Ustawienia czytania">
+    <span class="tool-label">TEKST</span>
+    <button type="button" id="fontDown" aria-label="Zmniejsz czcionkę">A−</button>
+    <button type="button" id="fontUp" aria-label="Powiększ czcionkę">A+</button>
+
+    <span class="tool-label">INTERLINIA</span>
+    <button type="button" id="lineDown" aria-label="Zmniejsz interlinię">−</button>
+    <button type="button" id="lineUp" aria-label="Zwiększ interlinię">+</button>
+  </div>
+
+  <main class="prologue-page">
+
+    <div class="story-heading">
+      <p class="eyebrow">N. TSUKISHIRO · NOWELA</p>
+      <h2>DRUGIE OKO</h2>
+      <time datetime="2026-11-27">2026</time>
+    </div>
+
+    <article class="story-text" id="storyText">
+
+      <p>DRUGIE OKO</p>
+
+      <p>Nowela inspirowana tradycją Takasaki Daruma</p>
+
+      <p class="scene-break">* * *</p>
+
+      <p>I. Człowiek, który chciał zobaczyć zmarłych</p>
+
+      <p>Takasaki, prefektura Gunma.</p>
+
+      <p>Listopad przyniósł do miasta pierwsze naprawdę chłodne dni. Wiatr przesuwał po chodnikach opadłe liście, a niebo od kilku godzin pozostawało przykryte ciężkimi, szarymi chmurami.</p>
+
+      <p>Akira siedział przy oknie niewielkiej kawiarni, obserwując przechodniów. Przed nim stała filiżanka herbaty, której nie zdążył nawet spróbować.</p>
+
+      <p>Od śmierci młodszej siostry minęły trzy lata.</p>
+
+      <p>Yumi miała zaledwie jedenaście lat, kiedy zginęła w wypadku samochodowym. Akira pamiętał tamten dzień z nieprzyjemną dokładnością. Pamiętał telefon od matki, późniejszą wizytę w szpitalu i ciszę, która zapanowała w ich domu po pogrzebie.</p>
+
+      <p>Najtrudniejsze było jednak to, że nie zdążył się z nią pożegnać.</p>
+
+      <p>Przez kolejne lata próbował znaleźć odpowiedź na pytanie, które nie dawało mu spokoju. Czy po śmierci naprawdę nie pozostaje nic? Czy świadomość człowieka znika bezpowrotnie, czy może istnieje coś, czego żyjący po prostu nie potrafią dostrzec?</p>
+
+      <p>Czytał książki, oglądał materiały o zjawiskach paranormalnych i odwiedzał miejsca, w których według opowieści pojawiały się duchy.</p>
+
+      <p>Nie znalazł jednak niczego, co przekonałoby go, że istnieje możliwość ponownego spotkania z siostrą.</p>
+
+      <p>Tego popołudnia postanowił wrócić do domu inną drogą.</p>
+
+      <p>Przechodząc jedną z bocznych ulic, zauważył niewielki sklep z tradycyjnymi japońskimi przedmiotami. Na wystawie znajdowały się ceramiczne figurki, drewniane ozdoby oraz rzędy czerwonych lalek Daruma.</p>
+
+      <p>Wszedł do środka.</p>
+
+      <p>Przy ladzie siedział starszy mężczyzna, który odłożył czytaną gazetę.</p>
+
+      <p>– W czym mogę pomóc?</p>
+
+      <p>– Chciałbym kupić Darumę.</p>
+
+      <p>– Ma pan na myśli konkretny rozmiar?</p>
+
+      <p>Akira pokręcił głową.</p>
+
+      <p>Starzec wskazał mu półkę.</p>
+
+      <p>– Proszę wybrać. Każda może stać się początkiem czegoś nowego.</p>
+
+      <p>Akira podszedł bliżej. Wśród wielu czerwonych figurek zauważył niewielką lalkę z charakterystycznymi brwiami i pustymi oczami.</p>
+
+      <p>Wziął ją do ręki.</p>
+
+      <p>– Jak dokładnie się jej używa?</p>
+
+      <p>– Maluje pan jedno oko, składając życzenie. Drugie zostawia puste do czasu jego spełnienia.</p>
+
+      <p>– A jeśli życzenie się nie spełni?</p>
+
+      <p>– Wtedy pozostaje niedokończona.</p>
+
+      <p>Akira przyjrzał się lalce.</p>
+
+      <p>– Rozumiem.</p>
+
+      <p>Zapłacił i schował ją do torby.</p>
+
+      <p>Nie wiedział jeszcze, jakie życzenie wypowie.</p>
+
+      <p class="scene-break">* * *</p>
+
+      <p>II. Jedno oko</p>
+
+      <p>Wieczorem Akira postawił Darumę na biurku.</p>
+
+      <p>Przez dłuższą chwilę przyglądał się jej twarzy.</p>
+
+      <p>Wydawała mu się niepozorna. Zwyczajny przedmiot, który tysiące ludzi kupowało każdego roku, by symbolicznie rozpocząć realizację swoich planów.</p>
+
+      <p>Wyjął czarny flamaster.</p>
+
+      <p>Nie chciał prosić o pieniądze, szczęście ani powodzenie w pracy.</p>
+
+      <p>Jego pragnienie było znacznie prostsze.</p>
+
+      <p>Chciał zobaczyć Yumi.</p>
+
+      <p>Nie na zdjęciu, nie we śnie ani we własnych wspomnieniach.</p>
+
+      <p>Chciał ją zobaczyć naprawdę.</p>
+
+      <p>– Chciałbym móc widzieć tych, którzy odeszli. Chciałbym jeszcze raz zobaczyć moją siostrę.</p>
+
+      <p>Powoli zamalował lewe oko Darumy.</p>
+
+      <p>Następnie odstawił ją na półkę.</p>
+
+      <p>Przez kolejne dni nic się nie wydarzyło.</p>
+
+      <p>Akira zaczął nawet żartować z samego siebie. Nie wierzył przecież, że niewielka figurka może zmienić jego życie.</p>
+
+      <p>Wszystko zmieniło się w piątkowy wieczór.</p>
+
+      <p class="scene-break">* * *</p>
+
+      <p>III. Pierwsze spotkanie</p>
+
+      <p>Akira wracał z pracy, kiedy zauważył kobietę stojącą przy wejściu do stacji kolejowej.</p>
+
+      <p>Miała na sobie jasny płaszcz. Jej twarz była zwrócona w stronę przechodniów, ale wzrok pozostawał nieruchomy.</p>
+
+      <p>Ludzie mijali ją bez zainteresowania.</p>
+
+      <p>Akira również chciał przejść obok, jednak w pewnym momencie kobieta odwróciła głowę.</p>
+
+      <p>Ich spojrzenia się spotkały.</p>
+
+      <p>Przez chwilę chłopak nie wiedział, co powinien zrobić.</p>
+
+      <p>Kobieta wyglądała zupełnie zwyczajnie. Nie była przezroczysta, nie unosiła się nad ziemią ani nie miała żadnych cech, które kojarzył z opowieściami o duchach.</p>
+
+      <p>Mimo to coś w jej obecności wydawało się niewłaściwe.</p>
+
+      <p>Podszedł bliżej.</p>
+
+      <p>– Przepraszam?</p>
+
+      <p>Nie odpowiedziała.</p>
+
+      <p>– Czy wszystko w porządku?</p>
+
+      <p>Starzec zmarszczył brwi.</p>
+
+      <p>– Przecież nikogo tam nie ma.</p>
+
+      <p>Akira ponownie spojrzał przed siebie.</p>
+
+      <p>Kobiety już nie było.</p>
+
+      <p>Wrócił do domu przekonany, że właśnie doświadczył czegoś, na co czekał od trzech lat.</p>
+
+      <p>Jego życzenie się spełniło.</p>
+
+      <p class="scene-break">* * *</p>
+
+      <p>IV. Dar</p>
+
+      <p>W ciągu następnego tygodnia Akira zobaczył kolejne postacie.</p>
+
+      <p>Najpierw były to pojedyncze sylwetki. Mężczyzna stojący na końcu peronu, starsza kobieta siedząca na ławce w parku czy dziecko obserwujące przechodniów z drugiej strony ulicy.</p>
+
+      <p>Wszystkie wyglądały zwyczajnie.</p>
+
+      <p>Akira szybko zrozumiał jednak, że nie wszyscy ludzie potrafią je dostrzec.</p>
+
+      <p>Zaczął eksperymentować.</p>
+
+      <p>Wychodził wieczorami, odwiedzał stare cmentarze i spacerował po miejscach, które wcześniej omijał. Niektóre postacie znikały, gdy próbował się do nich zbliżyć. Inne pozostawały w jednym miejscu, jakby na coś czekały.</p>
+
+      <p>Pewnego dnia zobaczył dziewczynkę siedzącą na schodach przed swoim blokiem.</p>
+
+      <p>Miała krótkie czarne włosy i żółtą spinkę.</p>
+
+      <p>Akira natychmiast ją rozpoznał.</p>
+
+      <p>– Yumi?</p>
+
+      <p>Dziewczynka podniosła głowę.</p>
+
+      <p>Przez moment patrzyła na niego bez słowa.</p>
+
+      <p>Potem uśmiechnęła się.</p>
+
+      <p>Akira poczuł, jak ściska mu się gardło.</p>
+
+      <p>– To naprawdę ty?</p>
+
+      <p>Nie odpowiedziała.</p>
+
+      <p>Wstała i zaczęła iść w stronę pobliskiego parku.</p>
+
+      <p>Chłopak ruszył za nią.</p>
+
+      <p>Przez kilka minut podążał jej śladem, aż w końcu dziewczynka zatrzymała się przy jednym z drzew.</p>
+
+      <p>Odwróciła głowę.</p>
+
+      <p>– Akira?</p>
+
+      <p>Chłopak zamarł.</p>
+
+      <p>To był jej głos.</p>
+
+      <p>Dokładnie taki, jaki zapamiętał.</p>
+
+      <p>– Tak?</p>
+
+      <p>Yumi uśmiechnęła się ponownie.</p>
+
+      <p>– Długo cię nie było.</p>
+
+      <p>Zanim zdążył odpowiedzieć, dziewczynka zniknęła.</p>
+
+      <p>Akira stał jeszcze przez kilka minut, nie potrafiąc się poruszyć.</p>
+
+      <p>Po raz pierwszy od trzech lat poczuł, że być może udało mu się odzyskać coś, co uważał za bezpowrotnie utracone.</p>
+
+      <p class="scene-break">* * *</p>
+
+      <p>V. Cena</p>
+
+      <p>Początkowo Akira próbował ponownie spotkać siostrę.</p>
+
+      <p>Wracał do parku, siadał na tej samej ławce i czekał.</p>
+
+      <p>Czasami Yumi pojawiała się na kilka minut. Innym razem nie przychodziła wcale.</p>
+
+      <p>Z czasem zaczął jednak dostrzegać coś jeszcze.</p>
+
+      <p>Nie wszystkie postacie były przyjazne.</p>
+
+      <p>Niektóre pojawiały się w jego mieszkaniu. Inne obserwowały go z odległości kilku metrów. Bywało, że dostrzegał je w odbiciach szyb lub na końcu pustego korytarza.</p>
+
+      <p>Nie potrafił już odpocząć.</p>
+
+      <p>Zaczął zamykać drzwi do swojego pokoju, zasłaniać okna i unikać miejsc, w których wcześniej widywał zmarłych.</p>
+
+      <p>Najgorsze było jednak to, że nie potrafił wyłączyć swojego daru.</p>
+
+      <p>Nie miał nad nim żadnej kontroli.</p>
+
+      <p>Pewnego wieczoru zadzwoniła do niego matka.</p>
+
+      <p>– Akira, martwię się o ciebie.</p>
+
+      <p>– Dlaczego?</p>
+
+      <p>– Ostatnio prawie nie wychodzisz. Nie odbierasz telefonów. W pracy też podobno masz problemy.</p>
+
+      <p>– Wszystko jest w porządku.</p>
+
+      <p>– Może powinieneś odpocząć.</p>
+
+      <p>Chłopak spojrzał na drzwi.</p>
+
+      <p>Po ich drugiej stronie stała postać starszej kobiety.</p>
+
+      <p>– Akira?</p>
+
+      <p>– Muszę kończyć.</p>
+
+      <p>Rozłączył się.</p>
+
+      <p>Przez kilka następnych dni nie wychodził z mieszkania.</p>
+
+      <p>Zaczął zastanawiać się, czy jego życzenie rzeczywiście było spełnieniem marzenia, czy raczej czymś, czego nigdy nie powinien był pragnąć.</p>
+
+      <p>W końcu przypomniał sobie słowa sprzedawcy.</p>
+
+      <p>Jedno oko podczas składania życzenia.</p>
+
+      <p>Drugie po jego spełnieniu.</p>
+
+      <p>Postanowił wrócić do sklepu.</p>
+
+      <p class="scene-break">* * *</p>
+
+      <p>VI. Niedokończona Daruma</p>
+
+      <p>Starszy mężczyzna rozpoznał go natychmiast.</p>
+
+      <p>– Witam ponownie.</p>
+
+      <p>Akira położył na ladzie czerwoną lalkę.</p>
+
+      <p>– Chciałbym ją oddać.</p>
+
+      <p>Starzec spojrzał na zamalowane oko.</p>
+
+      <p>– Czy życzenie się spełniło?</p>
+
+      <p>Chłopak przez chwilę milczał.</p>
+
+      <p>– Tak.</p>
+
+      <p>– W takim razie powinien pan zamalować drugie.</p>
+
+      <p>Akira zacisnął dłonie.</p>
+
+      <p>– Nie chcę już tego daru.</p>
+
+      <p>Starzec przyjrzał mu się uważnie.</p>
+
+      <p>– Nie rozumiem.</p>
+
+      <p>– Chciałem zobaczyć moją siostrę. Tylko ją. Nie wszystkich pozostałych.</p>
+
+      <p>Mężczyzna nie odpowiedział od razu.</p>
+
+      <p>– Ale przecież właśnie o to pan poprosił.</p>
+
+      <p>– Nie wiedziałem, co się stanie!</p>
+
+      <p>– Czy ktoś powiedział panu, że będzie inaczej?</p>
+
+      <p>Akira spuścił wzrok.</p>
+
+      <p>Nie.</p>
+
+      <p>Nikt mu tego nie obiecywał.</p>
+
+      <p>Starzec przesunął lalkę w jego stronę.</p>
+
+      <p>– Daruma symbolizuje wytrwałość. Człowiek składa życzenie i podejmuje próbę jego spełnienia. Nie jest jednak przedmiotem, który pozwala nam wybierać wyłącznie te części rzeczywistości, które nam odpowiadają.</p>
+
+      <p>Akira zabrał lalkę.</p>
+
+      <p>Nie namalował drugiego oka.</p>
+
+      <p>Wyszedł ze sklepu i przez długi czas spacerował po mieście.</p>
+
+      <p>Wiedział, że nie może cofnąć swojej decyzji.</p>
+
+      <p class="scene-break">* * *</p>
+
+      <p>VII. Ostatnie spotkanie</p>
+
+      <p>Minęły kolejne trzy tygodnie.</p>
+
+      <p>Stan Akiry pogarszał się. Przestał chodzić do pracy, a jego matka coraz częściej próbowała się z nim skontaktować.</p>
+
+      <p>Pewnego dnia przyjechała do jego mieszkania.</p>
+
+      <p>Nie widziała syna od ponad miesiąca.</p>
+
+      <p>Drzwi otworzył dopiero po kilku minutach.</p>
+
+      <p>– Akira...</p>
+
+      <p>Chłopak wyglądał na wyczerpanego.</p>
+
+      <p>Matka weszła do środka i zauważyła, że wszystkie okna zostały zasłonięte.</p>
+
+      <p>– Co się z tobą dzieje?</p>
+
+      <p>– Nic.</p>
+
+      <p>– Przecież widzę, że coś jest nie tak.</p>
+
+      <p>Akira usiadł na kanapie.</p>
+
+      <p>Przez dłuższą chwilę nie mówił niczego.</p>
+
+      <p>W końcu wskazał miejsce obok siebie.</p>
+
+      <p>– Pamiętasz, jak Yumi bała się ciemności?</p>
+
+      <p>Matka skinęła głową.</p>
+
+      <p>– Zawsze zostawiała zapaloną lampkę przy łóżku.</p>
+
+      <p>– Widziałem ją.</p>
+
+      <p>Kobieta spojrzała na syna.</p>
+
+      <p>– Kogo?</p>
+
+      <p>– Yumi.</p>
+
+      <p>Przez chwilę nie wiedziała, co odpowiedzieć.</p>
+
+      <p>Akira opowiedział jej o wszystkim. O Darumie, sklepie, postaciach i spotkaniach z siostrą.</p>
+
+      <p>Nie próbowała go przekonywać, że wszystko jest prawdą.</p>
+
+      <p>Nie próbowała również wyśmiewać jego słów.</p>
+
+      <p>Po prostu została z nim przez resztę dnia.</p>
+
+      <p>Kiedy wychodziła, poprosił ją, żeby następnego dnia ponownie przyszła.</p>
+
+      <p>Obiecała, że tak zrobi.</p>
+
+      <p>Tej nocy Akira ponownie zobaczył Yumi.</p>
+
+      <p>Dziewczynka siedziała przy oknie.</p>
+
+      <p>– Nie powinieneś się tak martwić – powiedziała.</p>
+
+      <p>Chłopak usiadł na podłodze.</p>
+
+      <p>– Chciałem tylko jeszcze raz z tobą porozmawiać.</p>
+
+      <p>– Przecież rozmawiamy.</p>
+
+      <p>– Ale nie mogę tak żyć.</p>
+
+      <p>Yumi nie odpowiedziała.</p>
+
+      <p
