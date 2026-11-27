@@ -736,4 +736,149 @@
 
       <h2>VIII. Drugie oko</h2>
 
-      <p>Następn
+      <p>Następnego ranka matka Akiry przyjechała ponownie.</p>
+
+      <p>Nie otrzymała odpowiedzi na pukanie, dlatego skorzystała z zapasowego klucza.</p>
+
+      <p>W mieszkaniu panowała cisza.</p>
+
+      <p>Na stole stała filiżanka herbaty, obok niej leżał czarny flamaster, a na półce znajdowała się czerwona Daruma.</p>
+
+      <p>Jedno oko było zamalowane.</p>
+
+      <p>Drugie pozostało białe.</p>
+
+      <p>Matka zauważyła również kartkę pozostawioną na stole.</p>
+
+      <p>Nie było na niej długiego pożegnania. Znajdowało się tylko jedno zdanie:</p>
+
+      <p>„Mamo, przepraszam, że nie potrafiłem już odróżnić tego, za czym tęskniłem, od tego, czego powinienem się bać”.</p>
+
+      <p>Akira zmarł.</p>
+
+      <p>Jego matka długo siedziała w mieszkaniu, trzymając kartkę w dłoniach. Nie potrafiła zrozumieć, dlaczego syn tak bardzo cierpiał i dlaczego nie powiedział jej wcześniej, jak źle się czuje.</p>
+
+      <p>Kilka dni później zabrała Darumę do domu.</p>
+
+      <p>Nie chciała jej wyrzucać.</p>
+
+      <p>Nie chciała również malować drugiego oka.</p>
+
+      <p>Postawiła ją na półce w pokoju Yumi.</p>
+
+      <p>Przez kolejne miesiące nie potrafiła na nią patrzeć.</p>
+
+      <p>Aż pewnego wieczoru, porządkując rzeczy córki, zauważyła coś, czego wcześniej nie dostrzegła.</p>
+
+      <p>Na odwrocie Darumy znajdowała się niewielka karteczka, którą Akira przykleił tam jeszcze przed pierwszym spotkaniem z siostrą.</p>
+
+      <p>Widniało na niej życzenie:</p>
+
+      <p>„Chciałbym móc widzieć tych, którzy odeszli. Chciałbym jeszcze raz zobaczyć moją siostrę”.</p>
+
+      <p>Kobieta przeczytała je kilkukrotnie.</p>
+
+      <p>Potem odłożyła kartkę.</p>
+
+      <p>Zrozumiała, że jej syn otrzymał dokładnie to, o co prosił.</p>
+
+      <p>Nie otrzymał jednak tego, czego naprawdę potrzebował.</p>
+
+      <p class="ending">KONIEC</p>
+
+    </article>
+
+    <div class="publication">
+      N. TSUKISHIRO · NOWELA · 2026
+    </div>
+
+    <section class="comments">
+      <h2>KOMENTARZE</h2>
+
+      <script src="https://giscus.app/client.js"
+        data-repo="NTsukishiro/n-tsukishiro-site"
+        data-repo-id="R_kgDOV5ZR5g"
+        data-category="General"
+        data-category-id="DIC_kwDOV5ZR5s4DL1EZ"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="purple_dark"
+        data-lang="pl"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </section>
+  </main>
+
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+  <footer>
+    <a href="index.html">STRONA GŁÓWNA</a>
+    <a href="szczur.html">SZCZUR</a>
+    <a href="wzrok.html">WZROK, SŁUCH, MOWA</a>
+
+    <p>© 2026 N. TSUKISHIRO</p>
+  </footer>
+
+  <script>
+    let fontSize = 19;
+    let lineHeight = 1.9;
+
+    function changeFontSize(change) {
+      fontSize += change;
+
+      if (fontSize < 14) fontSize = 14;
+      if (fontSize > 26) fontSize = 26;
+
+      document.documentElement.style.setProperty(
+        "--reading-size",
+        fontSize + "px"
+      );
+    }
+
+    function changeLineHeight(change) {
+      lineHeight += change;
+
+      if (lineHeight < 1.4) lineHeight = 1.4;
+      if (lineHeight > 2.5) lineHeight = 2.5;
+
+      document.documentElement.style.setProperty(
+        "--reading-height",
+        lineHeight
+      );
+    }
+
+    window.addEventListener("scroll", function () {
+      const scrollTop = window.scrollY;
+      const scrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      const progress = scrollHeight > 0
+        ? (scrollTop / scrollHeight) * 100
+        : 0;
+
+      document.getElementById("progressBar").style.width =
+        progress + "%";
+
+      const backToTop = document.getElementById("backToTop");
+
+      if (scrollTop > 400) {
+        backToTop.classList.add("visible");
+      } else {
+        backToTop.classList.remove("visible");
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+  </script>
+
+</body>
+</html>
